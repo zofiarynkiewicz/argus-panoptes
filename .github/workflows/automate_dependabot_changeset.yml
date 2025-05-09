@@ -1,0 +1,73 @@
+name: Automate Dependabot changeset
+on:
+  pull_request_target:
+    paths:
+      - ".github/workflows/automate_dependabot_changeset.yml"
+      - "**/yarn.lock"
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  generate-changeset:
+    runs-on: [self-hosted, linux, x64, philips-code-hub, ubuntu-latest]
+    if:
+      github.actor == 'dependabot[bot]' && github.repository ==
+      'philips-internal/developer-portal-plugins'
+    steps:
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ secrets.BACKSTAGE_BOT_APPLICATION_ID }}
+          private-key: ${{ secrets.BACKSTAGE_BOT_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 2
+          ref: ${{ github.head_ref }}
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.email noreply@philips.com
+          git config --global user.name 'Github changeset workflow'
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Fetch previous commit for check
+        run: git fetch origin '${{ github.event.pull_request.base.sha }}'
+
+      - name: Find changed workspaces
+        id: find-changed-workspaces
+        run: node ./scripts/ci/list-workspaces-with-changes.js
+        env:
+          COMMIT_SHA_BEFORE: "${{ github.event.pull_request.base.sha }}"
+
+      - name: Generate feedback
+        uses: philips-software/backstage-actions/renovate-changesets@main
+        with:
+          multiple-workspaces: true
+          dependency-manager: dependabot
+
+      - name: Remove lockfile duplicates
+        run:
+          node ./scripts/ci/yarn-dedupe-workspace.js '${{
+          steps.find-changed-workspaces.outputs.workspaces }}'
+
+      - name: Commit Lockfile Changes
+        run: |
+          # Check for changes
+          if ! git diff-index --quiet HEAD --; then
+            git commit -am "Automated de-duplication of lockfile"
+            git push
+          else
+              echo "No changes to commit."
+          fi

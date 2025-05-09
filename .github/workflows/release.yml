@@ -1,0 +1,51 @@
+name: Release all workspaces
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  find-changed-workspaces:
+    name: Detect workspace changes
+    runs-on: [self-hosted, linux, x64, philips-code-hub, ubuntu-latest]
+    outputs:
+      workspaces: ${{ steps.find-changed-workspaces.outputs.workspaces }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Fetch previous commit for check
+        run: git fetch origin '${{ github.event.before }}'
+
+      - name: Find changed workspaces
+        id: find-changed-workspaces
+        run: node ./scripts/ci/list-workspaces-with-changes.js
+        env:
+          COMMIT_SHA_BEFORE: "${{ github.event.before }}"
+
+  maybe-release-workspace:
+    name: Maybe release ${{ matrix.workspace }}
+    needs: find-changed-workspaces
+    if: ${{ needs.find-changed-workspaces.outputs.workspaces != '[]' }}
+    permissions:
+      packages: write
+      contents: write
+      pull-requests: write
+    strategy:
+      fail-fast: false
+      matrix:
+        workspace: ${{ fromJSON(needs.find-changed-workspaces.outputs.workspaces) }}
+    uses: ./.github/workflows/release_workspace.yml
+    with:
+      workspace: ${{ matrix.workspace }}
+    secrets: inherit
