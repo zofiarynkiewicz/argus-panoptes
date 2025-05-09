@@ -6,3 +6,28 @@ Argus is a many-eyed giant in Greek mythology. Known for his perpetual vigilance
 
 According to the [contribution policy](CONTRIBUTING.md), submissions to this
 project are deemed to be done under the MIT license.
+
+## Repository layout
+
+This repository is formed by a set of workspaces. A workspace holds a plugin or
+a set of plugins based on a specific topic/team. For example, catalog,
+kubernetes, and TechDocs can be referred to as workspaces. Each plugin belongs
+to a workspace and workspaces are portable enough to be moved to its own repo if
+desired.
+
+A workspace has its own instance of backstage which the plugins in that workspace 
+can be installed and configured into for testing purposes.
+
+## Release Management
+
+Changesets have proven to be a reliable method for managing different versions
+of packages. Each plugin workspace has its own changesets and isolated releases.
+
+When you make changes in your plugins you should run `yarn changeset` to create
+a changeset. This will prompt you to select the packages that have been
+modified and add changelog notes. This will be checked as part of the PR.
+
+Whenever a new changeset is introduced to the main, a fresh "Version packages
+($workspace_name)" PR is produced. Merging a Version packages PR will trigger
+the release of all the plugins in the workspaces (provided changesets have been
+added), and also update the `CHANGELOG` files.
