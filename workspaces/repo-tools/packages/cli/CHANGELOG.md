@@ -1,4 +1,4 @@
-# @philips-internal/developer-portal-plugins-cli
+# @philips-labs/argus-panotes-cli
 
 ## 0.3.0
 

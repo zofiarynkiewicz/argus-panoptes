@@ -11,10 +11,10 @@ env:
 
 jobs:
   generate-changeset:
-    runs-on: [self-hosted, linux, x64, philips-code-hub, ubuntu-latest]
+    runs-on: [ubuntu-latest]
     if:
       github.actor == 'dependabot[bot]' && github.repository ==
-      'philips-internal/developer-portal-plugins'
+      'philips-labs/argus-panotes'
     steps:
       - uses: actions/create-github-app-token@v2
         id: app-token

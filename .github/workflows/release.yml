@@ -9,7 +9,7 @@ on:
 jobs:
   find-changed-workspaces:
     name: Detect workspace changes
-    runs-on: [self-hosted, linux, x64, philips-code-hub, ubuntu-latest]
+    runs-on: [ubuntu-latest]
     outputs:
       workspaces: ${{ steps.find-changed-workspaces.outputs.workspaces }}
     steps:
