@@ -10,8 +10,18 @@
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philips-labs/argus-panotes",
+    "directory": "workspaces/ai-rundown/plugins/ai-plugin-backend"
+  },
   "backstage": {
-    "role": "backend-plugin"
+    "role": "backend-plugin",
+    "pluginId": "ai-plugin",
+    "pluginPackages": [
+      "@internal/plugin-ai-plugin",
+      "@internal/plugin-ai-plugin-backend"
+    ]
   },
   "scripts": {
     "start": "backstage-cli package start",

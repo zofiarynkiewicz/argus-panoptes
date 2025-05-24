@@ -6,7 +6,9 @@
     "plugins/*/src",
     "plugins/*/config.d.ts",
     "plugins/*/dev",
-    "plugins/*/migrations"
+    "plugins/*/migrations",
+    "*/.test.ts"
+
   ],
   "files": ["node_modules/@backstage/cli/asset-types/asset-types.d.ts"],
   "exclude": ["node_modules"],
@@ -17,5 +19,6 @@
     "target": "ES2022",
     "useUnknownInCatchVariables": false,
     "jsx": "react-jsx",
+    "types": ["jest", "node"]
   }
 }
