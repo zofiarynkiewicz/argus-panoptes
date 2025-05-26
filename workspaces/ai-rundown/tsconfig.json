@@ -8,7 +8,6 @@
     "plugins/*/dev",
     "plugins/*/migrations",
     "*/.test.ts"
-
   ],
   "files": ["node_modules/@backstage/cli/asset-types/asset-types.d.ts"],
   "exclude": ["node_modules"],

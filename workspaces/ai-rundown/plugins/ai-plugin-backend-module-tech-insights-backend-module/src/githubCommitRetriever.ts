@@ -17,7 +17,9 @@ export const getGitHubTokenFromConfig = (
       return undefined;
     }
 
-    console.info(`🔍 Retrieved GitHub token: ${token ? '✔️ Present' : '❌ Missing'}`);
+    console.info(
+      `🔍 Retrieved GitHub token: ${token ? '✔️ Present' : '❌ Missing'}`,
+    );
     return token;
   } catch (e) {
     console.error(`❌ Could not retrieve GitHub token: ${e}`);
@@ -104,8 +106,7 @@ export const createGitHubCommitMessageRetriever: FactRetriever = {
         }
 
         const prs: GitHubPR[] = await prResponse.json();
-        console.info(
-          `Fetched ${prs.length} PRs for ${entity.metadata.name}`,);
+        console.info(`Fetched ${prs.length} PRs for ${entity.metadata.name}`);
         if (!prs.length) continue;
 
         //const now = new Date();

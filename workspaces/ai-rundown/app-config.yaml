@@ -120,6 +120,11 @@ permission:
   # setting this to `false` will disable permissions
   enabled: true
 
+ai:
+  google:
+    gemini:
+      apiKey: ${GOOGLE_GEMINI_API_KEY}
+
 techInsights:
   factRetrievers:
     github-commit-message-retriever:
@@ -127,4 +132,3 @@ techInsights:
       cadence: '0 */4 * * *' # Every minute
       filter:
         kind: Component
-  
