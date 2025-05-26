@@ -25,51 +25,46 @@ export async function createRouter({
   const store = new AISummaryStore(db);
 
   /**
-   * GET /summaries - fetch all summaries for today
-   */
-  router.get('/summaries', async (req, res) => {
-    const requestedDate = req.query.date as string;
-
-    if (!requestedDate) {
-      return res
-        .status(400)
-        .json({ error: 'Missing required "date" query param' });
-    }
-
-    try {
-      const summaries = await store.getAllSummariesForDate(requestedDate);
-      res.json(summaries);
-    } catch (error) {
-      logger.error('Error fetching summaries:');
-      res.status(500).json({ error: 'Could not fetch summaries' });
-    }
-  });
+ * GET /summaries - fetch all summaries for today
+ */
+router.get('/summaries', async (req, res) => {
+  const requestedDate = req.query.date as string;
+  if (!requestedDate) {
+    return res
+      .status(400)
+      .json({ error: 'Missing required "date" query param' });
+  }
+  try {
+    const summaries = await store.getAllSummariesForDate(requestedDate);
+    return res.json(summaries); // Add return here
+  } catch (error) {
+    logger.error('Error fetching summaries:');
+    return res.status(500).json({ error: 'Could not fetch summaries' }); // Add return here
+  }
+});
 
   /**
-   * POST /summaries - receive and store summaries
-   * Expected format:
-   * {
-   *   system: "foo",
-   *   date: "2025-05-13",
-   *   summaries: [{ repoName: "repo-a", summary: "..." }, ...]
-   * }
-   */
-  router.post('/summaries', async (req, res) => {
-    try {
-      console.log('Received POST body:', req.body);
-      const { system, date, summaries } = req.body;
-
-      if (!system || !date || !Array.isArray(summaries)) {
-        return res.status(400).json({ error: 'Invalid request format' });
-      }
-
-      await store.saveSummaries(system, date, summaries as SummaryPerRepo[]);
-      res.status(204).send();
-    } catch (error) {
-      logger.error('Error saving summaries:');
-      res.status(500).json({ error: 'Could not save summaries' });
+ * POST /summaries - receive and store summaries
+ * Expected format:
+ * {
+ * system: "foo",
+ * date: "2025-05-13",
+ * summaries: [{ repoName: "repo-a", summary: "..." }, ...]
+ * }
+ */
+router.post('/summaries', async (req, res) => {
+  try {
+    console.log('Received POST body:', req.body);
+    const { system, date, summaries } = req.body;
+    if (!system || !date || !Array.isArray(summaries)) {
+      return res.status(400).json({ error: 'Invalid request format' });
     }
-  });
-
-  return router;
+    await store.saveSummaries(system, date, summaries as SummaryPerRepo[]);
+    return res.status(204).send(); // Add return here
+  } catch (error) {
+    logger.error('Error saving summaries:');
+    return res.status(500).json({ error: 'Could not save summaries' }); // Add return here
+  }
+});
+return router;
 }
