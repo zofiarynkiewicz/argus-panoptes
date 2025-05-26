@@ -85,10 +85,9 @@ export const CommitMessageTestPage = () => {
       console.error('Error fetching summaries:', err);
     }
 
-    // In your component:
     const configApi = useApi(configApiRef);
-
-    // Then replace the hardcoded key with:
+    
+    // Api key for Google Gemini
     const apiKey = configApi.getString('ai.google.gemini.apiKey');
     const ai = new GoogleGenAI({
       apiKey: apiKey,
