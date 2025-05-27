@@ -109,13 +109,13 @@ export const createGitHubCommitMessageRetriever: FactRetriever = {
         console.info(`Fetched ${prs.length} PRs for ${entity.metadata.name}`);
         if (!prs.length) continue;
 
-        //const now = new Date();
-        //const oneDayAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        // const now = new Date();
+        // const oneDayAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
         // const oneDayAgo = new Date(0);
 
         const recentPRs = prs.filter(pr => {
           if (!pr.merged_at) return false;
-          //const mergedAt = new Date(pr.merged_at);
+          // const mergedAt = new Date(pr.merged_at);
           return true;
         });
 
@@ -126,7 +126,7 @@ export const createGitHubCommitMessageRetriever: FactRetriever = {
           const lastPr = recentPRs[0];
           const prTitle = lastPr.title;
 
-          let allCommitMessages: string[] = [];
+          const allCommitMessages: string[] = [];
           let commitCountLastWeek = 0;
           const oneWeekAgo = new Date();
           oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
@@ -145,7 +145,7 @@ export const createGitHubCommitMessageRetriever: FactRetriever = {
             const commits: GitHubCommit[] = await commitsResponse.json();
 
             const recentCommits = commits.filter(() => {
-              //const commitDate = new Date(commit.commit.author.date);
+              // const commitDate = new Date(commit.commit.author.date);
               return true;
             });
 

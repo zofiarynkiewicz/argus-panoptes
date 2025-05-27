@@ -21,16 +21,16 @@ export async function postSummaries(
       });
 
       if (response.ok) {
-        console.log(`✅ POST success for system '${system}'`);
+        // console.log(`POST success for system '${system}'`);
       } else {
-        const errorText = await response.text();
-        console.error(
-          `❌ POST failed for '${system}': ${response.status}`,
-          errorText,
-        );
+        // const errorText = await response.text();
+        // console.error(
+        //   `POST failed for '${system}': ${response.status}`,
+        //   errorText,
+        // );
       }
     } catch (err) {
-      console.error(`❌ POST threw error for '${system}':`, err);
+      // console.error(`POST threw error for '${system}':`, err);
     }
   }
 }

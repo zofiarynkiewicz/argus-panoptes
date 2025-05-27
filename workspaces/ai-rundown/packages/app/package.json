@@ -19,6 +19,7 @@
     "lint": "backstage-cli package lint"
   },
   "dependencies": {
+    "@backstage-community/plugin-tech-insights": "^0.5.2",
     "@backstage/app-defaults": "^1.6.1",
     "@backstage/canon": "^0.3.0",
     "@backstage/catalog-model": "^1.7.3",
@@ -47,6 +48,7 @@
     "@internal/plugin-ai-plugin": "workspace:^",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
+    "@mui/icons-material": "^7.1.0",
     "openai": "^4.97.0",
     "react": "^18.0.2",
     "react-dom": "^18.0.2",

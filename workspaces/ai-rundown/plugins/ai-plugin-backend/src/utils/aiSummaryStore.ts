@@ -1,5 +1,5 @@
 import { Knex } from 'knex';
-import { SummaryPerRepo } from '../../../ai-plugin/utils/types';
+import { SummaryPerRepo } from '@internal/plugin-ai-plugin';
 
 export class AISummaryStore {
   constructor(private readonly db: Knex) {}

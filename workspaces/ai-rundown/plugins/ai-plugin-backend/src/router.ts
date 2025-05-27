@@ -2,7 +2,7 @@ import express from 'express';
 import { LoggerService } from '@backstage/backend-plugin-api';
 import { PluginDatabaseManager } from '@backstage/backend-common';
 import { AISummaryStore } from './utils/aiSummaryStore';
-//import { SummaryPerRepo } from '@internal/plugin-ai-plugin/utils/types';
+// import { SummaryPerRepo } from '@internal/plugin-ai-plugin/utils/types';
 
 interface RouterOptions {
   logger: LoggerService;

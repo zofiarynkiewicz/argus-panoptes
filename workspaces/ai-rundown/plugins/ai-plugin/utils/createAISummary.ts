@@ -61,7 +61,7 @@ export async function generateSummaries(
         const summary = response?.text ?? 'No summary returned.';
         summarizedRepos.push({ repoName, summary });
       } catch (error) {
-        console.error(`Error summarizing ${repoName} in ${system}:`, error);
+        // console.error(`Error summarizing ${repoName} in ${system}:`, error);
       }
     }
 

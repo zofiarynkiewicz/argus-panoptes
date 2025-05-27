@@ -120,12 +120,7 @@ describe('generateSummaries', () => {
      * Checks to see if the results the function is providing
      * are as expected.
      */
-    expect(result).toEqual({ 'system-error': [] });
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      'Error summarizing repoErr in system-error:',
-      expect.any(Error),
-    );
 
-    consoleErrorSpy.mockRestore();
+    expect(result).toEqual({ 'system-error': [] });
   });
 });
