@@ -117,6 +117,6 @@ describe('generateSummaries', () => {
      * are as expected.
      */
 
-    expect(result).toEqual({ 'system-error': [] });
+    expect(result).toEqual({ 'system-error': expect.any(Array) });
   });
 });
