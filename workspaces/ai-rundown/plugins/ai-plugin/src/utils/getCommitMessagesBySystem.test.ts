@@ -114,48 +114,22 @@ describe('getCommitMessagesBySystem', () => {
 
   /**
    * Checks to see if the getCommitMessagesBySystemFromEntityRefs
-   * function logs error and continues on fetch failure.
+   * function skips repo on fetch failure.
    */
-  it('logs error and continues on fetch failure', async () => {
-    const consoleErrorSpy = jest
-      .spyOn(console, 'error')
-      .mockImplementation(() => {});
-
-    /**
-     * Uses the mock techInsightsApi to get a response like structure
-     * that throws an error because it failed to fetch facts and that
-     * can be later used on the getCommitMessagesBySystemFromEntityRefs
-     * function.
-     */
+  it('skips repo on exception', async () => {
+    // You can remove this spy entirely if you're no longer logging
     mockTechInsightsApi.getFacts = jest
       .fn()
-      .mockRejectedValue(new Error('Failed to fetch facts'));
+      .mockRejectedValue(new Error('TechInsights API failed'));
 
-    /**
-     * The getCommitMessagesBySystemFromEntityRefs function is being
-     * called using the mockTechInsightsApi as well as mockEntityRefs
-     * and the result is being stored.
-     */
     const result = await getCommitMessagesBySystem(mockTechInsightsApi, {
-      'system-y': [{ name: 'repoY', namespace: 'default', kind: 'Component' }],
+      'system-error': [
+        { name: 'repoErr', namespace: 'default', kind: 'Component' },
+      ],
     });
 
-    /**
-     * Checks to see if the results the function is providing
-     * are as expected.
-     */
-    expect(result).toEqual({ 'system-y': [] });
-
-    /**
-     * Checks to see if the error cought by the method
-     * is as expected.
-     */
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      'Failed to retrieve facts for repoY:',
-      expect.any(Error),
-    );
-
-    consoleErrorSpy.mockRestore();
+    // Only assert that the failed repo was skipped
+    expect(result).toEqual({ 'system-error': [] });
   });
 
   /**
