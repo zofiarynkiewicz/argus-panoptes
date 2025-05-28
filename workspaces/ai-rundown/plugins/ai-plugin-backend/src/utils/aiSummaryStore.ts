@@ -1,7 +1,6 @@
 import { Knex } from 'knex';
 import { SummaryPerRepo } from '../router';
 
-
 export class AISummaryStore {
   constructor(private readonly db: Knex) {}
 
