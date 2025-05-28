@@ -1,8 +1,7 @@
 {
   "name": "@internal/plugin-ai-plugin-backend-module-tech-insights-backend-module",
   "version": "0.1.0",
-  "license": "Apache-2.0",
-  "private": true,
+  "license": "MIT",
   "description": "The tech-insights-backend-module backend module for the ai-plugin plugin.",
   "main": "src/index.ts",
   "types": "src/index.ts",
