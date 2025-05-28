@@ -118,7 +118,7 @@ jobs:
         run: yarn backstage-cli repo build --all
 
       - name: lint
-        run: yarn backstage-cli repo lint --since origin/main
+        run: yarn backstage-cli repo lint
 
       - name: test changed packages
         run: yarn backstage-cli repo test --coverage --maxWorkers=3
