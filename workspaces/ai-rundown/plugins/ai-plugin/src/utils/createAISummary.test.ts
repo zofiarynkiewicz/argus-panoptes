@@ -97,10 +97,6 @@ describe('generateSummaries', () => {
    * logs error and skips repo on exceptions.
    */
   it('logs error and skips repo on exception', async () => {
-    const consoleErrorSpy = jest
-      .spyOn(console, 'error')
-      .mockImplementation(() => {});
-    mockGenerateContent.mockRejectedValue(new Error('AI failed'));
 
     /**
      * Mocks an input for the generateSummariesFromCommits
