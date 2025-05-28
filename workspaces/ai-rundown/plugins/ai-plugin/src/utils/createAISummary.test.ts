@@ -97,7 +97,6 @@ describe('generateSummaries', () => {
    * logs error and skips repo on exceptions.
    */
   it('logs error and skips repo on exception', async () => {
-
     /**
      * Mocks an input for the generateSummariesFromCommits
      * function.

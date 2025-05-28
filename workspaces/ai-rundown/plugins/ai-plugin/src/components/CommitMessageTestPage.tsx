@@ -3,7 +3,7 @@ import {
   useApi,
   discoveryApiRef,
   fetchApiRef,
-  configApiRef
+  configApiRef,
 } from '@backstage/core-plugin-api';
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
 import { techInsightsApiRef } from '@backstage/plugin-tech-insights';

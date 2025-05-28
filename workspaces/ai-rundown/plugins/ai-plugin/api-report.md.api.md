@@ -47,12 +47,12 @@ export interface SummaryPerRepo {
 //
 // src/plugin.d.ts:2:22 - (ae-undocumented) Missing documentation for "aiPluginPlugin".
 // src/plugin.d.ts:5:22 - (ae-undocumented) Missing documentation for "AiPluginPage".
-// utils/types.d.ts:1:1 - (ae-undocumented) Missing documentation for "CommitsPerRepo".
-// utils/types.d.ts:2:5 - (ae-undocumented) Missing documentation for "repoName".
-// utils/types.d.ts:3:5 - (ae-undocumented) Missing documentation for "commitMessages".
-// utils/types.d.ts:5:1 - (ae-undocumented) Missing documentation for "SummaryPerRepo".
-// utils/types.d.ts:6:5 - (ae-undocumented) Missing documentation for "repoName".
-// utils/types.d.ts:7:5 - (ae-undocumented) Missing documentation for "summary".
+// src/utils/types.d.ts:1:1 - (ae-undocumented) Missing documentation for "CommitsPerRepo".
+// src/utils/types.d.ts:2:5 - (ae-undocumented) Missing documentation for "repoName".
+// src/utils/types.d.ts:3:5 - (ae-undocumented) Missing documentation for "commitMessages".
+// src/utils/types.d.ts:5:1 - (ae-undocumented) Missing documentation for "SummaryPerRepo".
+// src/utils/types.d.ts:6:5 - (ae-undocumented) Missing documentation for "repoName".
+// src/utils/types.d.ts:7:5 - (ae-undocumented) Missing documentation for "summary".
 
 // (No @packageDocumentation comment for this package)
 ```
