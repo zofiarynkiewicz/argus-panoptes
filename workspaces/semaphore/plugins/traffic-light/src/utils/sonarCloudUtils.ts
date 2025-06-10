@@ -1,10 +1,9 @@
 import {
   CompoundEntityRef,
-  Entity, 
-  getCompoundEntityRef
+  Entity,
+  getCompoundEntityRef,
 } from '@backstage/catalog-model';
 import { TechInsightsApi } from '@backstage/plugin-tech-insights';
-
 
 /**
  * Summary of SonarCloud facts for a repository.
@@ -54,7 +53,10 @@ export class SonarCloudUtils {
    * @param entity – The entity reference whose SonarCloud metrics should be retrieved.
    * @returns A {@link SonarQubeMetrics} object with the parsed results.
    */
-  async getSonarQubeFacts(techInsightsApi: TechInsightsApi, entity: CompoundEntityRef): Promise<SonarQubeMetrics> {
+  async getSonarQubeFacts(
+    techInsightsApi: TechInsightsApi,
+    entity: CompoundEntityRef,
+  ): Promise<SonarQubeMetrics> {
     try {
       // fetch SonarCloud facts for the given entity
       const response = await techInsightsApi.getFacts(entity, [
@@ -76,20 +78,20 @@ export class SonarCloudUtils {
         quality_gate: String(facts.quality_gate ?? 'NONE'),
       };
     } catch (error) {
-        return { ...DEFAULT_METRICS };
+      return { ...DEFAULT_METRICS };
     }
   }
 
   /**
    * Retrieves the top 5 critical SonarCloud repositories based on quality gate status,
    * vulnerabilities, bugs, code smells, and code coverage.
-   * 
+   *
    * @param techInsightsApi - The TechInsightsApi instance used to fetch SonarCloud facts.
    * @param entities - An array of Backstage Entity objects to check SonarCloud status for.
    * @returns A promise that resolves to an array of SonarCloudSummary objects,
-   *          containing the top 5 critical repositories based on the defined criteria. 
+   *          containing the top 5 critical repositories based on the defined criteria.
    */
-  async  getTop5CriticalSonarCloudRepos(
+  async getTop5CriticalSonarCloudRepos(
     techInsightsApi: TechInsightsApi,
     entities: Entity[],
   ): Promise<SonarCloudSummary[]> {
@@ -103,10 +105,15 @@ export class SonarCloudUtils {
         results.push({
           entity: entityRef,
           quality_gate: facts.quality_gate === 'OK' ? 0 : 1,
-          vulnerabilities: typeof facts.vulnerabilities === 'number' ? facts.vulnerabilities : 0,
-          code_coverage: typeof facts.code_coverage === 'number' ? facts.code_coverage : 0,
+          vulnerabilities:
+            typeof facts.vulnerabilities === 'number'
+              ? facts.vulnerabilities
+              : 0,
+          code_coverage:
+            typeof facts.code_coverage === 'number' ? facts.code_coverage : 0,
           bugs: typeof facts.bugs === 'number' ? facts.bugs : 0,
-          code_smells: typeof facts.code_smells === 'number' ? facts.code_smells : 0,
+          code_smells:
+            typeof facts.code_smells === 'number' ? facts.code_smells : 0,
         });
       } catch (err) {
         results.push({
@@ -124,8 +131,7 @@ export class SonarCloudUtils {
     const selected: SonarCloudSummary[] = [];
 
     // First, select repositories that failed the quality gate
-    const failedQualityGate = results
-      .filter(r => r.quality_gate === 1)
+    const failedQualityGate = results.filter(r => r.quality_gate === 1);
     selected.push(...failedQualityGate.slice(0, 5));
 
     // If we have less than 5, fill with repositories that have vulnerabilities

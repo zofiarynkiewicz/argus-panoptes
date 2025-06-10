@@ -49,7 +49,10 @@ export class DependabotUtils {
           medium: typeof facts.medium === 'number' ? facts.medium : 0,
         });
       } catch (err) {
-        console.warn(`⚠️ Could not fetch dependabot fact for ${entityRef.name}`, err);
+        console.warn(
+          `⚠️ Could not fetch dependabot fact for ${entityRef.name}`,
+          err,
+        );
         results.push({
           name: entity.metadata.name,
           critical: 0,
@@ -103,7 +106,10 @@ export class DependabotUtils {
       const facts = response?.['dependabotFactRetriever']?.facts;
 
       if (!facts) {
-        console.error('❌ No facts found for entity:', stringifyEntityRef(entity));
+        console.error(
+          '❌ No facts found for entity:',
+          stringifyEntityRef(entity),
+        );
         return { critical: 0, high: 0, medium: 0 };
       }
 
@@ -127,9 +133,15 @@ export class DependabotUtils {
   ): Promise<DependabotChecks> {
     try {
       const checkResults = await api.runChecks(entity);
-      const criticalCheck = checkResults.find(r => r.check.id === 'dependabot-critical-alerts');
-      const highCheck = checkResults.find(r => r.check.id === 'dependabot-high-alerts');
-      const mediumCheck = checkResults.find(r => r.check.id === 'dependabot-medium-alerts');
+      const criticalCheck = checkResults.find(
+        r => r.check.id === 'dependabot-critical-alerts',
+      );
+      const highCheck = checkResults.find(
+        r => r.check.id === 'dependabot-high-alerts',
+      );
+      const mediumCheck = checkResults.find(
+        r => r.check.id === 'dependabot-medium-alerts',
+      );
 
       if (checkResults.length === 0) {
         return {

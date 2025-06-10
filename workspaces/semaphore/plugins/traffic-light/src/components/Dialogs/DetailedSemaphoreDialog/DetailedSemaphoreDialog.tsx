@@ -30,8 +30,6 @@
 // // import { TrafficLightDependabot } from '../../Semaphores';
 // // import { getCompoundEntityRef } from '@backstage/catalog-model';
 
-
-
 // // Type for semaphore severity../../utils
 // type Severity = 'critical' | 'high' | 'medium' | 'low' | 'info';
 // // Type for issue details - extended with URL and directLink
@@ -328,11 +326,10 @@
 //   );
 
 //   const azureUtils = React.useMemo(
-//     () => new AzureUtils(), 
+//     () => new AzureUtils(),
 //     [techInsightsApi],
 //   );
 //   // const [realDependabotData, setRealDependabotData] = React.useState<SemaphoreData | null>(null);
-
 
 //   // Get mock data based on semaphore type (or placeholder if not found)
 //   const defaultData: SemaphoreData = {
@@ -677,20 +674,20 @@
 //   React.useEffect(() => {
 //     if (semaphoreType === 'Dependabot' && entities && entities.length > 0) {
 //       setIsLoading(true);
-  
+
 //       const fetchData = async () => {
 //         try {
 //           // const color = TrafficLightDependabot{, };
 //           // const entity = entities[0]; // Assumes you're evaluating the first entity only
 //           // console.log('[🚦] Running Dependabot checks for entity:', entity.metadata.name);
-  
+
 //           // const { criticalAlertsCount, highAlertsCount, mediumAlertsCount } =
 //           //   await dependabotUtils.getDependabotFacts(techInsightsApi, {
 //           //     kind: entity.kind,
 //           //     namespace: entity.metadata.namespace ?? 'default',
 //           //     name: entity.metadata.name,
 //           //   });
-          
+
 //           // const color = TrafficLightDependabot.fetch();
 //           // const { criticalAlertCheck, highAlertCheck, mediumAlertCheck } = await dependabotUtils.getDependabotChecks(
 //           //   techInsightsApi,
@@ -700,15 +697,15 @@
 //           //     name: entity.metadata.name,
 //           //   },
 //           // );
-          
+
 //           // const color = allDependabotChecksPass ? 'green' : 'red';
 //           // const summary = allDependabotChecksPass
 //           //   ? 'All Dependabot thresholds passed ✅'
 //           //   : 'One or more Dependabot thresholds failed ❌';
-  
+
 //           // console.log('[🎨] Final Dependabot Color:', color);
 //           // console.log('[📊] Alert counts — Critical:', criticalAlertsCount, 'High:', highAlertsCount, 'Medium:', mediumAlertsCount);
-  
+
 //           // setRealDependabotData({
 //           //   color,
 //           //   metrics: {
@@ -735,12 +732,10 @@
 //           setIsLoading(false);
 //         }
 //       };
-  
+
 //       fetchData();
 //     }
 //   }, [semaphoreType, entities, techInsightsApi]);
-  
-  
 
 //   // Use real data if available, otherwise fall back to mock data
 //   const data = React.useMemo(() => {
@@ -1006,7 +1001,6 @@
 //             </Grid>
 //           </Grid>
 //         );
-
 
 //       case 'Azure DevOps Bugs':
 //         return (

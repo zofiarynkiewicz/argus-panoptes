@@ -38,14 +38,14 @@ interface PipelineStatusSummary extends JsonObject {
   successWorkflowRunsCount: number;
   failureWorkflowRunsCount: number;
   successRate: number;
-  workflowMetrics: Record<string, WorkflowMetrics>; 
+  workflowMetrics: Record<string, WorkflowMetrics>;
 }
 
 /**
- * Creates a fact retriever for Foundation pipeline metrics from Github Actions. 
- * 
+ * Creates a fact retriever for Foundation pipeline metrics from Github Actions.
+ *
  * This retriever queries GitHub Actions workflow data for specified entity of type 'component'.
- * 
+ *
  * @returns A FactRetriever that collects pipeline status metrics
  */
 export const foundationPipelineStatusFactRetriever: FactRetriever = {
@@ -82,7 +82,7 @@ export const foundationPipelineStatusFactRetriever: FactRetriever = {
 
   /**
    * Handler function that retrieves pipeline status metrics for relevant entities.
-   * 
+   *
    * @param ctx - Context object containing configuration, logger, and other services
    * @returns Array of entity facts with pipeline status metrics
    */
@@ -156,13 +156,13 @@ export const foundationPipelineStatusFactRetriever: FactRetriever = {
           if (workflowsResponse.ok) {
             const workflowsData = await workflowsResponse.json();
             workflowDefinitions = workflowsData.workflows || [];
-          } 
+          }
         } catch (error: any) {}
 
         // Fetch all workflow runs from the main branch using pagination
         const apiUrl = `https://api.github.com/repos/${owner}/${repoName}/actions/runs?branch=main&per_page=100`;
 
-        try {  
+        try {
           let page = 1;
           let hasMorePages = true;
           let allRuns: WorkflowRun[] = [];
@@ -190,7 +190,6 @@ export const foundationPipelineStatusFactRetriever: FactRetriever = {
             if (pageRuns.length < 100) {
               hasMorePages = false;
             } else {
-
               // Check for Link header with 'next' relation to confirm more pages
               const linkHeader = response.headers.get('Link');
               hasMorePages = linkHeader

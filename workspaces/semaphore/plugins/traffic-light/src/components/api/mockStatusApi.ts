@@ -51,19 +51,19 @@
 //   if (facts.bugs > 0) {
 //     return { color: 'red', reason: `${facts.bugs} bugs detected` };
 //   }
-  
+
 //   if (facts.code_smells > 15) {
 //     return { color: 'red', reason: `${facts.code_smells} code smells (>15)` };
 //   } else if (facts.code_smells > 10) {
 //     return { color: 'yellow', reason: `${facts.code_smells} code smells (10-20)` };
 //   }
-  
+
 //   if (facts.vulnerabilities > 3) {
 //     return { color: 'red', reason: `${facts.vulnerabilities} vulnerabilities (>3)` };
 //   } else if (facts.vulnerabilities > 0) {
 //     return { color: 'yellow', reason: `${facts.vulnerabilities} vulnerabilities (1-3)` };
 //   }
-  
+
 //   // All good - passes all checks
 //   return { color: 'green', reason: 'No bugs, acceptable code smells and vulnerabilities' };
 // };
@@ -81,7 +81,7 @@
 //   // Validate the status before using it
 //   const preProdStatus: TrafficLightColor = validateTrafficLightColor(status);
 
-//   // Instantiate the utils for SonarCloud 
+//   // Instantiate the utils for SonarCloud
 //   const sonarUtils = new SonarCloudUtils();
 //   const azureUtils = new AzureUtils();
 
@@ -92,7 +92,7 @@
 //     namespace: 'default',
 //     kind: 'component'
 //   };
-  
+
 //   // Get SonarCloud facts and evaluate status
 //   let sonarStatus = { color: 'green' as TrafficLightColor, reason: 'Score 70 ≥ 70 (green)' };
 //   try {

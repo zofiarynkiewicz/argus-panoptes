@@ -60,7 +60,6 @@ metadata:
 spec:
   owner: identity-team
 
-
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1

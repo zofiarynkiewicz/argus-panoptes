@@ -1,6 +1,4 @@
-import {
-  CompoundEntityRef,
-} from '@backstage/catalog-model';
+import { CompoundEntityRef } from '@backstage/catalog-model';
 import { TechInsightsApi } from '@backstage/plugin-tech-insights';
 
 /**
@@ -54,7 +52,10 @@ export class FoundationUtils {
    * @param entity - The entity reference for which to fetch Foundation pipeline facts.
    * @returns An object containing Foundation pipeline metrics for the entity.
    */
-  async getFoundationPipelineFacts(api: TechInsightsApi, entity: CompoundEntityRef): Promise<FoundationPipelineMetrics> {
+  async getFoundationPipelineFacts(
+    api: TechInsightsApi,
+    entity: CompoundEntityRef,
+  ): Promise<FoundationPipelineMetrics> {
     try {
       // fetch Foundation pipeline facts for the given entity
       const response = await api.getFacts(entity, [
@@ -75,7 +76,7 @@ export class FoundationUtils {
         successRate: Number(facts.successRate ?? 0),
       };
     } catch (error) {
-      return { ...DEFAULT_METRICS }
+      return { ...DEFAULT_METRICS };
     }
   }
 
@@ -87,7 +88,10 @@ export class FoundationUtils {
    * @param entity - The entity reference for which to fetch Foundation pipeline facts.
    * @returns An object containing the results of the checks.
    */
-  async getFoundationPipelineChecks(api: TechInsightsApi, entity: CompoundEntityRef): Promise<FoundationPipelineChecks> {
+  async getFoundationPipelineChecks(
+    api: TechInsightsApi,
+    entity: CompoundEntityRef,
+  ): Promise<FoundationPipelineChecks> {
     try {
       // fetch Foundation pipeline checks for the given entity
       const checkResults = await api.runChecks(entity);

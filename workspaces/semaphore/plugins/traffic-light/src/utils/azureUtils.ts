@@ -36,21 +36,29 @@ export class AzureUtils {
   /**
    * Fetches the Azure DevOps bug facts for the given entity.
    */
-  async getAzureDevOpsBugFacts(api: TechInsightsApi, entity: CompoundEntityRef): Promise<AzureDevOpsBugMetrics> {
+  async getAzureDevOpsBugFacts(
+    api: TechInsightsApi,
+    entity: CompoundEntityRef,
+  ): Promise<AzureDevOpsBugMetrics> {
     try {
       console.log(
         '🔍 Fetching Azure DevOps bug facts for entity:',
         stringifyEntityRef(entity),
       );
 
-      const response = await api.getFacts(entity, ['azure-devops-bugs-retriever']);
+      const response = await api.getFacts(entity, [
+        'azure-devops-bugs-retriever',
+      ]);
 
       console.log('📦 Raw Azure DevOps facts:', response);
 
       const facts = response?.['azure-devops-bugs-retriever']?.facts;
 
       if (!facts) {
-        console.warn('⚠️ No facts found for entity:', stringifyEntityRef(entity));
+        console.warn(
+          '⚠️ No facts found for entity:',
+          stringifyEntityRef(entity),
+        );
         return { ...DEFAULT_METRICS };
       }
 
@@ -72,7 +80,10 @@ export class AzureUtils {
   /**
    * Runs the Azure DevOps bug‑count Tech‑Insights check.
    */
-  async getAzureDevOpsBugChecks(api: TechInsightsApi, entity: CompoundEntityRef): Promise<AzureDevOpsBugChecks> {
+  async getAzureDevOpsBugChecks(
+    api: TechInsightsApi,
+    entity: CompoundEntityRef,
+  ): Promise<AzureDevOpsBugChecks> {
     try {
       console.log(
         '✅ Running Azure DevOps bug count check for entity:',
@@ -81,9 +92,7 @@ export class AzureUtils {
 
       const checkResults = await api.runChecks(entity);
 
-      const bugCheck = checkResults.find(
-        r => r.check.id === 'azure-bugs',
-      );
+      const bugCheck = checkResults.find(r => r.check.id === 'azure-bugs');
 
       console.info(
         `🔍 Check result for ${stringifyEntityRef(entity)}:`,

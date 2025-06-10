@@ -77,8 +77,16 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
-        <SidebarItem icon={TrafficIcon} to="traffic-light" text="Traffic-Light Plugin" />
-        <SidebarItem icon={AutoAwesomeIcon} to="ai-plugin" text="AI-Summary Plugin" />
+        <SidebarItem
+          icon={TrafficIcon}
+          to="traffic-light"
+          text="Traffic-Light Plugin"
+        />
+        <SidebarItem
+          icon={AutoAwesomeIcon}
+          to="ai-plugin"
+          text="AI-Summary Plugin"
+        />
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>

@@ -39,7 +39,7 @@ import { SonarQubeSemaphoreDialog } from '../SemaphoreDialogs/SonarQubeDialog';
 import { PreproductionSemaphoreDialog } from '../SemaphoreDialogs/PreProductionDialog';
 import { FoundationSemaphoreDialog } from '../SemaphoreDialogs/FoundationDialog';
 import { ReportingSemaphoreDialog } from '../SemaphoreDialogs/ReportingDialog';
-import {DependabotSemaphoreDialog}  from '../SemaphoreDialogs/DependabotSemaphoreDialog'
+import { DependabotSemaphoreDialog } from '../SemaphoreDialogs/DependabotSemaphoreDialog';
 
 export const TrafficComponent = () => {
   const catalogApi = useApi(catalogApiRef);
@@ -86,7 +86,7 @@ export const TrafficComponent = () => {
 
   const handleSemaphoreClick = (semaphoreType: string) => {
     switch (semaphoreType) {
-       case 'BlackDuck':
+      case 'BlackDuck':
         setBlackDuckDialogOpen(true);
         break;
       case 'Github Advanced Security':
@@ -153,10 +153,10 @@ export const TrafficComponent = () => {
   const handleCloseSonarQubeDialog = () => {
     setSonarQubeDialogOpen(false);
   };
-  
+
   const handleCloseDependabotDialog = () => {
     setDependabotDialogOpen(false);
-  }
+  };
 
   const cardAction = (title: string, items: any[]) => (
     <IconButton onClick={() => handleClick(title, items)}>
@@ -193,8 +193,7 @@ export const TrafficComponent = () => {
         ).sort();
         setAvailableSystems(systems);
         if (systems.length > 0) {
-          const initialSystem =
-            systems[0];
+          const initialSystem = systems[0];
           setSelectedSystem(initialSystem);
         }
       } catch (err) {

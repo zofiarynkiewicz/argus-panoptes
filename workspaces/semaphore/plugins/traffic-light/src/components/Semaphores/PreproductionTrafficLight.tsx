@@ -37,7 +37,7 @@ export const PreproductionTrafficLight = ({
         // 1. Fetch red threshold and configured repositories from system annotation
         let redThreshold = 0.33;
         let configuredRepoNames: string[] = [];
-        
+
         try {
           const systemName = entities[0].spec?.system;
           const namespace = entities[0].metadata.namespace || 'default';
@@ -75,15 +75,18 @@ export const PreproductionTrafficLight = ({
         } catch (err) {}
 
         // 2. Filter entities to only include configured repositories
-        const filteredEntities = configuredRepoNames.length > 0 
-          ? entities.filter(entity => 
-              configuredRepoNames.includes(entity.metadata.name)
-            )
-          : entities; // Fallback to all entities if no configuration found
+        const filteredEntities =
+          configuredRepoNames.length > 0
+            ? entities.filter(entity =>
+                configuredRepoNames.includes(entity.metadata.name),
+              )
+            : entities; // Fallback to all entities if no configuration found
 
         if (filteredEntities.length === 0) {
           setColor('gray');
-          setReason('No configured repositories found for preproduction checks');
+          setReason(
+            'No configured repositories found for preproduction checks',
+          );
           return;
         }
 
@@ -104,7 +107,11 @@ export const PreproductionTrafficLight = ({
 
         // 4. Determine color and reason based on filtered entities
         const { color: computedColor, reason: computedReason } =
-          determineSemaphoreColor(failures, filteredEntities.length, redThreshold);
+          determineSemaphoreColor(
+            failures,
+            filteredEntities.length,
+            redThreshold,
+          );
 
         setColor(computedColor);
         setReason(computedReason);

@@ -45,16 +45,40 @@ interface SecurityThresholds {
 /**
  * Extract security thresholds from system entity
  */
-function extractSecurityThresholds(systemEntity: Entity | undefined, entityCount: number): SecurityThresholds {
+function extractSecurityThresholds(
+  systemEntity: Entity | undefined,
+  entityCount: number,
+): SecurityThresholds {
   const annotations = systemEntity?.metadata.annotations || {};
-  
+
   return {
-    critical_red: parseFloat(annotations['github-advanced-security-system-critical-threshold-red'] || '0'),
-    high_red: parseFloat(annotations['github-advanced-security-system-high-threshold-red'] || '0'),
-    secrets_red: parseFloat(annotations['github-advanced-security-system-secrets-threshold-red'] || '0'),
-    medium_red: parseFloat(annotations['github-advanced-security-system-medium-threshold-red'] || '0.5') * entityCount,
-    medium_yellow: parseFloat(annotations['github-advanced-security-system-medium-threshold-yellow'] || '0.1') * entityCount,
-    low_yellow: parseFloat(annotations['github-advanced-security-system-low-threshold-yellow'] || '0.2') * entityCount,
+    critical_red: parseFloat(
+      annotations['github-advanced-security-system-critical-threshold-red'] ||
+        '0',
+    ),
+    high_red: parseFloat(
+      annotations['github-advanced-security-system-high-threshold-red'] || '0',
+    ),
+    secrets_red: parseFloat(
+      annotations['github-advanced-security-system-secrets-threshold-red'] ||
+        '0',
+    ),
+    medium_red:
+      parseFloat(
+        annotations['github-advanced-security-system-medium-threshold-red'] ||
+          '0.5',
+      ) * entityCount,
+    medium_yellow:
+      parseFloat(
+        annotations[
+          'github-advanced-security-system-medium-threshold-yellow'
+        ] || '0.1',
+      ) * entityCount,
+    low_yellow:
+      parseFloat(
+        annotations['github-advanced-security-system-low-threshold-yellow'] ||
+          '0.2',
+      ) * entityCount,
   };
 }
 
@@ -84,7 +108,7 @@ export const GitHubSemaphoreDialog: React.FC<GitHubSemaphoreDialogProps> = ({
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
-  
+
   const githubASUtils = React.useMemo(
     () => new GithubAdvancedSecurityUtils(),
     [],
@@ -101,14 +125,14 @@ export const GitHubSemaphoreDialog: React.FC<GitHubSemaphoreDialogProps> = ({
   // Helper function to extract repository name from GitHub URL
   const extractRepoName = (url: string): string => {
     if (!url) return '';
-    
+
     const urlParts = url.split('/');
     const repoIndex = urlParts.indexOf('github.com');
-    
+
     if (repoIndex !== -1 && repoIndex + 2 < urlParts.length) {
       return `${urlParts[repoIndex + 1]}/${urlParts[repoIndex + 2]}`;
     }
-    
+
     return '';
   };
 
@@ -122,19 +146,28 @@ export const GitHubSemaphoreDialog: React.FC<GitHubSemaphoreDialogProps> = ({
         // Get system entity and thresholds (if available)
         let systemEntity: Entity | undefined;
         let thresholds: SecurityThresholds | undefined;
-        
+
         try {
           const systemName = entities[0].spec?.system;
           if (systemName) {
             systemEntity = await catalogApi.getEntityByRef({
               kind: 'System',
               namespace: entities[0].metadata.namespace || 'default',
-              name: typeof systemName === 'string' ? systemName : String(systemName),
+              name:
+                typeof systemName === 'string'
+                  ? systemName
+                  : String(systemName),
             });
-            thresholds = extractSecurityThresholds(systemEntity, entities.length);
+            thresholds = extractSecurityThresholds(
+              systemEntity,
+              entities.length,
+            );
           }
         } catch (systemError) {
-          console.warn('Could not fetch system entity for thresholds:', systemError);
+          console.warn(
+            'Could not fetch system entity for thresholds:',
+            systemError,
+          );
         }
 
         // Get security check results (for traffic light calculation)
@@ -238,23 +271,28 @@ export const GitHubSemaphoreDialog: React.FC<GitHubSemaphoreDialogProps> = ({
           const trafficLightResult = calculateGitHubSecurityTrafficLight(
             securityCheckResults,
             entities,
-            thresholds
+            thresholds,
           );
-          color = trafficLightResult.color === 'white' ? 'gray' : trafficLightResult.color;
+          color =
+            trafficLightResult.color === 'white'
+              ? 'gray'
+              : trafficLightResult.color;
           summary = trafficLightResult.reason;
         } else {
           // Fallback to simple logic if no thresholds available
-          color = critical > 0 || high > 0
-            ? 'red'
-            : medium > 0 || low > 0
-            ? 'yellow'
-            : 'green';
-          
-          summary = color === 'red'
-            ? 'Critical security issues require immediate attention.'
-            : color === 'yellow'
-            ? 'Security issues need to be addressed.'
-            : 'No security issues found.';
+          color =
+            critical > 0 || high > 0
+              ? 'red'
+              : medium > 0 || low > 0
+              ? 'yellow'
+              : 'green';
+
+          summary =
+            color === 'red'
+              ? 'Critical security issues require immediate attention.'
+              : color === 'yellow'
+              ? 'Security issues need to be addressed.'
+              : 'No security issues found.';
         }
 
         // Sort details by severity before setting the data

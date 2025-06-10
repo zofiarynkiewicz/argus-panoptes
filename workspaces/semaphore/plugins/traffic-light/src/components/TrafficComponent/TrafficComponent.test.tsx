@@ -29,7 +29,7 @@
 // describe('TrafficComponent', () => {
 //   beforeEach(() => {
 //     jest.clearAllMocks();
-    
+
 //     // Mock successful fetch response for dependabot status
 //     (global.fetch as jest.Mock).mockResolvedValue({
 //       ok: true,
@@ -55,7 +55,7 @@
 //     await act(async () => {
 //       fireEvent.mouseDown(selectElement);
 //     });
-    
+
 //     const option = screen.getByText(repoName);
 //     await act(async () => {
 //       fireEvent.click(option);
@@ -64,13 +64,13 @@
 
 //   it('renders the page with header and repository selector', async () => {
 //     render(<TrafficComponent />);
-    
+
 //     // Check header elements
 //     expect(screen.getByText('Traffic light plugin')).toBeInTheDocument();
-    
+
 //     // Check that the repository selector is rendered
 //     expect(screen.getByLabelText('Repository')).toBeInTheDocument();
-    
+
 //     // Wait for repo data to be loaded by the mocked RepoFetchComponent
 //     await waitFor(() => {
 //       expect(screen.getByText('repo1')).toBeInTheDocument();
@@ -80,15 +80,15 @@
 
 //   it('displays repository information when a repository is selected', async () => {
 //     render(<TrafficComponent />);
-    
+
 //     // Wait for repo data to be loaded
 //     await waitFor(() => {
 //       expect(screen.getByText('repo1')).toBeInTheDocument();
 //     });
-    
+
 //     // Select a repository
 //     await selectRepo('repo1');
-    
+
 //     // Check that repository information is displayed
 //     expect(screen.getByText('GitHub Repository')).toBeInTheDocument();
 //     expect(screen.getByText('repo1')).toBeInTheDocument();
@@ -97,22 +97,22 @@
 
 //   it('displays all traffic light sections when a repository is selected', async () => {
 //     render(<TrafficComponent />);
-    
+
 //     // Wait for repo data to be loaded
 //     await waitFor(() => {
 //       expect(screen.getByText('repo1')).toBeInTheDocument();
 //     });
-    
+
 //     // Select a repository
 //     await selectRepo('repo1');
-    
+
 //     // Check that all sections are displayed
 //     expect(screen.getByText('Security Checks')).toBeInTheDocument();
 //     expect(screen.getByText('Software Quality')).toBeInTheDocument();
 //     expect(screen.getByText('Reporting Pipelines')).toBeInTheDocument();
 //     expect(screen.getByText('Pre-Production Environment Status')).toBeInTheDocument();
 //     expect(screen.getByText('Foundation Pipelines')).toBeInTheDocument();
-    
+
 //     // Check that individual tools are displayed
 //     expect(screen.getByText('Dependabot')).toBeInTheDocument();
 //     expect(screen.getByText('BlackDuck')).toBeInTheDocument();
@@ -126,15 +126,15 @@
 
 //   it('fetches dependabot status when a repository is selected', async () => {
 //     render(<TrafficComponent />);
-    
+
 //     // Wait for repo data to be loaded
 //     await waitFor(() => {
 //       expect(screen.getByText('repo1')).toBeInTheDocument();
 //     });
-    
+
 //     // Select a repository
 //     await selectRepo('repo1');
-    
+
 //     // Check that fetch was called with the correct URL
 //     await waitFor(() => {
 //       expect(global.fetch).toHaveBeenCalledWith(
@@ -145,22 +145,22 @@
 
 //   it('opens a dialog when clicking on a More button', async () => {
 //     render(<TrafficComponent />);
-    
+
 //     // Wait for repo data to be loaded and select a repository
 //     await waitFor(() => {
 //       expect(screen.getByText('repo1')).toBeInTheDocument();
 //     });
 //     await selectRepo('repo1');
-    
+
 //     // Find the More button for Security Checks and click it
 //     const moreButtons = screen.getAllByRole('button');
 //     await act(async () => {
 //       fireEvent.click(moreButtons[1]); // The first more button (Security Checks)
 //     });
-    
+
 //     // Check that the dialog is open with the correct title
 //     expect(screen.getByText('Security Checks')).toBeInTheDocument();
-    
+
 //     // Check that dialog items are displayed
 //     expect(screen.getByText('Dependabot')).toBeInTheDocument();
 //     expect(screen.getByText('BlackDuck')).toBeInTheDocument();
@@ -170,17 +170,17 @@
 //   it('handles error when fetching dependabot status', async () => {
 //     // Mock failed fetch for this test
 //     (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
-    
+
 //     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-    
+
 //     render(<TrafficComponent />);
-    
+
 //     // Wait for repo data to be loaded and select a repository
 //     await waitFor(() => {
 //       expect(screen.getByText('repo1')).toBeInTheDocument();
 //     });
 //     await selectRepo('repo1');
-    
+
 //     // Verify error was logged
 //     await waitFor(() => {
 //       expect(consoleSpy).toHaveBeenCalledWith(
@@ -188,19 +188,19 @@
 //         expect.any(Error)
 //       );
 //     });
-    
+
 //     consoleSpy.mockRestore();
 //   });
 
 //   it('closes the dialog when clicking close', async () => {
 //     render(<TrafficComponent />);
-    
+
 //     // Wait for repo data to be loaded and select a repository
 //     await waitFor(() => {
 //       expect(screen.getByText('repo1')).toBeInTheDocument();
 //     });
 //     await selectRepo('repo1');
-    
+
 //     // Check that the dialog is closed (title no longer visible in dialog)
 //     // This depends on how your DialogComponent handles closing - might need adjustment
 //     await waitFor(() => {
