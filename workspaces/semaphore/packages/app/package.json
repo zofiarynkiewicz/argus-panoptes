@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "bundled": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philips-labs/argus-panotes",
+    "directory": "workspaces/semaphore/packages/app"
+  },
   "backstage": {
     "role": "frontend"
   },
