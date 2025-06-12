@@ -1,4 +1,4 @@
-import { Button, Grid } from '@mui/material';
+import { Grid, Button } from '@material-ui/core';
 import {
   EntityApiDefinitionCard,
   EntityConsumedApisCard,
@@ -57,6 +57,7 @@ import {
   EntityKubernetesContent,
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
+
 
 const techdocsContent = (
   <EntityTechdocsContent>
