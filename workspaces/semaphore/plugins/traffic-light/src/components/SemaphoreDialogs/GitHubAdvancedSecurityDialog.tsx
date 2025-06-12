@@ -185,9 +185,9 @@ export const GitHubSemaphoreDialog: React.FC<GitHubSemaphoreDialogProps> = ({
         const results = securityCheckResults;
 
         let critical = 0;
-          let high = 0;
-          let medium = 0;
-          let low = 0;
+        let high = 0;
+        let medium = 0;
+        let low = 0;
         const details: IssueDetail[] = [];
 
         results.forEach(result => {

@@ -125,9 +125,8 @@ export async function getGitHubRepoStatus(
       color: 'yellow',
       reason: `Critical workflows in progress: ${inProgress.join(', ')}`,
     };
-  } 
-    return { color: 'green', reason: 'All critical workflows succeeded.' };
-  
+  }
+  return { color: 'green', reason: 'All critical workflows succeeded.' };
 }
 
 export function determineSemaphoreColor(
@@ -144,12 +143,11 @@ export function determineSemaphoreColor(
       color: 'red',
       reason: `${failures} ${failures === 1 ? 'failure' : 'failures'}.`,
     };
-  } 
-    return {
-      color: 'yellow',
-      reason: `${failures} minor ${failures === 1 ? 'issue' : 'issues'}.`,
-    };
-  
+  }
+  return {
+    color: 'yellow',
+    reason: `${failures} minor ${failures === 1 ? 'issue' : 'issues'}.`,
+  };
 }
 
 /**

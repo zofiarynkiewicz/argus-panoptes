@@ -58,7 +58,6 @@ import {
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
 
-
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>

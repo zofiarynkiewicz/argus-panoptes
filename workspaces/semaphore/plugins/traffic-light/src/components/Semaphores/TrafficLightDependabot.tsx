@@ -71,12 +71,11 @@ export const determineDependabotColor = async (
         color: 'red',
         reason: `Critical alerts exceed threshold (${totalChecks.critical} >  0)`,
       };
-    } 
-      return {
-        color: 'yellow',
-        reason: `${totalChecks.critical} minor critical issues in dependabot alerts`,
-      };
-    
+    }
+    return {
+      color: 'yellow',
+      reason: `${totalChecks.critical} minor critical issues in dependabot alerts`,
+    };
   } catch (err) {
     return { color: 'gray', reason: 'Error fetching dependabot data' };
   }
