@@ -62,7 +62,7 @@ export class FoundationUtils {
         'foundationPipelineStatusFactRetriever',
       ]);
 
-      const facts = response?.['foundationPipelineStatusFactRetriever']?.facts;
+      const facts = response?.foundationPipelineStatusFactRetriever?.facts;
 
       if (!facts) {
         return { ...DEFAULT_METRICS };

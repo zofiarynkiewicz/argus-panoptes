@@ -173,7 +173,7 @@ export const githubPipelineStatusFactRetriever: FactRetriever = {
         };
 
         if (token) {
-          headers['Authorization'] = `token ${token}`;
+          headers.Authorization = `token ${token}`;
         }
 
         // Workflow definition to get accurate unique workflow counts

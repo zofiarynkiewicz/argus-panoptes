@@ -104,7 +104,7 @@ export class GithubAdvancedSecurityUtils {
         JSON.stringify(response, null, 2),
       );
 
-      const facts = response?.['githubAdvancedSecurityFactRetriever']?.facts;
+      const facts = response?.githubAdvancedSecurityFactRetriever?.facts;
 
       // Check if the facts are present and log an error if not
       if (!facts) {

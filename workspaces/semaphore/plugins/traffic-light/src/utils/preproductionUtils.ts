@@ -72,7 +72,7 @@ export class PreproductionUtils {
       ]);
 
       // Extract the facts object from the response
-      const facts = response?.['githubPipelineStatusFactRetriever']?.facts;
+      const facts = response?.githubPipelineStatusFactRetriever?.facts;
 
       // If no facts are found, log an error and return default values
       if (!facts) {

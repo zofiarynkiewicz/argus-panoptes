@@ -74,7 +74,7 @@ export const createSonarCloudFactRetriever = (
      */
     handler: async ctx => {
       const {
-        //config: appConfig,
+        // config: appConfig,
         discovery,
         auth,
         entityFilter,
@@ -150,7 +150,7 @@ export const createSonarCloudFactRetriever = (
           // Extract specific metrics from the response
           const measures = data.component.measures as SonarCloudMeasure[];
 
-          //Extract Quality Gate status
+          // Extract Quality Gate status
           const qgStatus = (dataQG as SonarQualityGateResponse).projectStatus
             .status;
 

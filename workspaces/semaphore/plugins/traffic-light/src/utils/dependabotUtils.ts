@@ -103,7 +103,7 @@ export class DependabotUtils {
   ): Promise<DependabotFacts> {
     try {
       const response = await api.getFacts(entity, ['dependabotFactRetriever']);
-      const facts = response?.['dependabotFactRetriever']?.facts;
+      const facts = response?.dependabotFactRetriever?.facts;
 
       if (!facts) {
         console.error(

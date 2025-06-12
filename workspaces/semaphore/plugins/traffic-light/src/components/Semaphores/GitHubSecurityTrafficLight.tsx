@@ -138,12 +138,12 @@ export function calculateGitHubSecurityTrafficLight(
       color: 'yellow',
       reason: formatYellowReason(totalChecks, thresholds),
     };
-  } else {
+  } 
     return {
       color: 'green',
       reason: 'All GitHub security checks passed for all entities',
     };
-  }
+  
 }
 
 /**

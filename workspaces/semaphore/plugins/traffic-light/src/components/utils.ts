@@ -125,9 +125,9 @@ export async function getGitHubRepoStatus(
       color: 'yellow',
       reason: `Critical workflows in progress: ${inProgress.join(', ')}`,
     };
-  } else {
+  } 
     return { color: 'green', reason: 'All critical workflows succeeded.' };
-  }
+  
 }
 
 export function determineSemaphoreColor(
@@ -144,12 +144,12 @@ export function determineSemaphoreColor(
       color: 'red',
       reason: `${failures} ${failures === 1 ? 'failure' : 'failures'}.`,
     };
-  } else {
+  } 
     return {
       color: 'yellow',
       reason: `${failures} minor ${failures === 1 ? 'issue' : 'issues'}.`,
     };
-  }
+  
 }
 
 /**
@@ -211,7 +211,7 @@ export const getGitHubSecurityFacts = async (
       JSON.stringify(response, null, 2),
     );
 
-    const facts = response?.['githubAdvancedSecurityFactRetriever']?.facts;
+    const facts = response?.githubAdvancedSecurityFactRetriever?.facts;
 
     if (!facts) {
       console.error(

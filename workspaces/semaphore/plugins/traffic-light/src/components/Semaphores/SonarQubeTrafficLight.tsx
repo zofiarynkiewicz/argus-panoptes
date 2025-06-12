@@ -100,14 +100,14 @@ export const determineSonarQubeColor = async (
         color: 'yellow',
         reason: `${totalFailedQualityGate} entities failed the quality gate check`,
       };
-    } else {
+    } 
       // If the number of entities that failed the quality gate check is below the yellow threshold
       // Set the colour to green
       return {
         color: 'green',
         reason: `${totalFailedQualityGate} entities failed the quality gate check`,
       };
-    }
+    
   } catch (err) {
     return { color: 'gray', reason: 'Error fetching SonarQube data' };
   }

@@ -62,7 +62,7 @@ export class ReportingUtils {
         'reportingPipelineStatusFactRetriever',
       ]);
 
-      const facts = response?.['reportingPipelineStatusFactRetriever']?.facts;
+      const facts = response?.reportingPipelineStatusFactRetriever?.facts;
 
       if (!facts) {
         return { ...DEFAULT_METRICS };

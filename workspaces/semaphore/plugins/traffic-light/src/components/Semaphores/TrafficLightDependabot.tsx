@@ -62,21 +62,21 @@ export const determineDependabotColor = async (
         medium: 0,
       },
     );
-    //no high repo and no critical repo -> green
+    // no high repo and no critical repo -> green
     if (totalChecks.high === 0 && totalChecks.critical === 0) {
       return { color: 'green', reason: 'All dependabot checks passed' };
     } else if (totalChecks.critical > 0) {
-      //if atleast 1 critical repo -> red
+      // if atleast 1 critical repo -> red
       return {
         color: 'red',
         reason: `Critical alerts exceed threshold (${totalChecks.critical} >  0)`,
       };
-    } else {
+    } 
       return {
         color: 'yellow',
         reason: `${totalChecks.critical} minor critical issues in dependabot alerts`,
       };
-    }
+    
   } catch (err) {
     return { color: 'gray', reason: 'Error fetching dependabot data' };
   }

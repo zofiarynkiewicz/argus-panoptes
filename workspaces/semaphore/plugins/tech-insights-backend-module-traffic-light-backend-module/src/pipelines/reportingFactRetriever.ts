@@ -168,7 +168,7 @@ export const reportingPipelineStatusFactRetriever: FactRetriever = {
         };
 
         if (token) {
-          headers['Authorization'] = `token ${token}`;
+          headers.Authorization = `token ${token}`;
         }
 
         try {
