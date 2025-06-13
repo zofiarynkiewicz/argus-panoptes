@@ -43,7 +43,7 @@ integrations:
       token: ${GITHUB_TOKEN}
   azure:
     - host: dev.azure.com
-      token: ${AZURE_DEVOPS_TOKEN}
+      token: 1nuTxjRzZqXRubeb7NI0VFTWXoSlJiA84dhL2RdCuGoFxkhanpaAJQQJ99BFACAAAAAAAAAAAAASAZDO1o5G
   openrouter:
     - host: openrouter.ai
       token: ${OPENROUTER_AI_TOKEN}
