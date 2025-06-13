@@ -213,6 +213,9 @@ export const githubAdvancedSecurityFactRetriever: FactRetriever = {
               case 'low':
                 severityCounts.low++;
                 break;
+              default:
+                // Other severity levels (e.g., 'unknown') are not counted.
+                break;
             }
           });
 

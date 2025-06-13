@@ -165,7 +165,9 @@ export const githubPipelineStatusFactRetriever: FactRetriever = {
             if (Array.isArray(excludeList)) {
               workflowConfig.excludePatterns = excludeList as string[];
             }
-          } catch (error) {}
+          } catch (error) {
+            // Malformed JSON in the annotation is ignored, proceed without exclusion patterns.
+          }
         }
 
         const headers: Record<string, string> = {
