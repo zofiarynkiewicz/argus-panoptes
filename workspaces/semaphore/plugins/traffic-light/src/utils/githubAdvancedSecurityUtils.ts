@@ -90,28 +90,28 @@ export class GithubAdvancedSecurityUtils {
     entity: CompoundEntityRef,
   ): Promise<GitHubSecurityFacts> {
     try {
-      console.log(
-        'Fetching GitHub Security facts for entity:',
-        stringifyEntityRef(entity),
-      );
+      // console.log(
+      //   'Fetching GitHub Security facts for entity:',
+      //   stringifyEntityRef(entity),
+      // );
 
       const response = await api.getFacts(entity, [
         'githubAdvancedSecurityFactRetriever',
       ]);
 
-      console.log(
-        'Raw Tech Insights API response:',
-        JSON.stringify(response, null, 2),
-      );
+      // console.log(
+      //   'Raw Tech Insights API response:',
+      //   JSON.stringify(response, null, 2),
+      // );
 
       const facts = response?.githubAdvancedSecurityFactRetriever?.facts;
 
       // Check if the facts are present and log an error if not
       if (!facts) {
-        console.error(
-          'No GitHub Security facts found for entity:',
-          stringifyEntityRef(entity),
-        );
+        // console.error(
+        //   'No GitHub Security facts found for entity:',
+        //   stringifyEntityRef(entity),
+        // );
         return { ...DEFAULT_FACTS };
       }
 
@@ -136,11 +136,11 @@ export class GithubAdvancedSecurityUtils {
           secretScanningAlerts as GitHubSecurityFacts['secretScanningAlerts'],
       };
     } catch (error) {
-      console.error(
-        'Error fetching GitHub Security facts for entity:',
-        stringifyEntityRef(entity),
-        error,
-      );
+      // console.error(
+      //   'Error fetching GitHub Security facts for entity:',
+      //   stringifyEntityRef(entity),
+      //   error,
+      // );
       return { ...DEFAULT_FACTS };
     }
   }
@@ -156,10 +156,10 @@ export class GithubAdvancedSecurityUtils {
     entity: CompoundEntityRef,
   ): Promise<GitHubSecurityChecks> {
     try {
-      console.log(
-        'Fetching GitHub Security checks for entity:',
-        stringifyEntityRef(entity),
-      );
+      // console.log(
+      //   'Fetching GitHub Security checks for entity:',
+      //   stringifyEntityRef(entity),
+      // );
 
       const checkResults = await api.runChecks(entity);
 
@@ -173,12 +173,12 @@ export class GithubAdvancedSecurityUtils {
       const mediumCheck = checkResults.find(r => r.check.id === 'medium-count');
       const lowCheck = checkResults.find(r => r.check.id === 'low-count');
 
-      // Log the results of the checks for debugging
-      console.log('Result from secret checks:', secretCheck?.result);
-      console.log('Result from medium checks:', mediumCheck?.result);
-      console.log('Result from high checks:', highCheck?.result);
-      console.log('Result from critical checks:', criticalCheck?.result);
-      console.log('Result from low checks:', lowCheck?.result);
+      // // Log the results of the checks for debugging
+      // console.log('Result from secret checks:', secretCheck?.result);
+      // console.log('Result from medium checks:', mediumCheck?.result);
+      // console.log('Result from high checks:', highCheck?.result);
+      // console.log('Result from critical checks:', criticalCheck?.result);
+      // console.log('Result from low checks:', lowCheck?.result);
 
       return {
         criticalCheck: Boolean(criticalCheck?.result ?? false),
@@ -188,11 +188,11 @@ export class GithubAdvancedSecurityUtils {
         secretCheck: Boolean(secretCheck?.result ?? false),
       };
     } catch (error) {
-      console.error(
-        'Error fetching GitHub Security checks for entity:',
-        stringifyEntityRef(entity),
-        error,
-      );
+      // console.error(
+      //   'Error fetching GitHub Security checks for entity:',
+      //   stringifyEntityRef(entity),
+      //   error,
+      // );
       return { ...DEFAULT_CHECKS };
     }
   }

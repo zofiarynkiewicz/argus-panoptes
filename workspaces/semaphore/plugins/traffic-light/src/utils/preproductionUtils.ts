@@ -51,7 +51,7 @@ const DEFAULT_CHECKS: PreproductionPipelineChecks = {
  * `githubPipelineStatusFactRetriever` retriever.
  */
 export class PreproductionUtils {
-  constructor() {}
+  // constructor() {}
 
   /**
    * Fetches Pre-production pipeline facts for a given entity using the Tech Insights API.

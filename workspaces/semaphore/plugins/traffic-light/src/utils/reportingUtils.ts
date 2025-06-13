@@ -42,7 +42,7 @@ const DEFAULT_CHECKS: ReportingPipelineChecks = {
  * evaluating Reporting‑pipeline data.
  */
 export class ReportingUtils {
-  constructor() {}
+  // constructor() {}
 
   /**
    * Fetches Reporting pipeline facts for a given entity using the Tech Insights API.

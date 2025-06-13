@@ -195,27 +195,27 @@ export const getGitHubSecurityFacts = async (
   entity: CompoundEntityRef,
 ): Promise<GitHubSecurityFacts> => {
   try {
-    console.log(
-      'Fetching GitHub Security facts for entity:',
-      stringifyEntityRef(entity),
-    );
+    // console.log(
+    //   'Fetching GitHub Security facts for entity:',
+    //   stringifyEntityRef(entity),
+    // );
 
     const response = await api.getFacts(entity, [
       'githubAdvancedSecurityFactRetriever',
     ]);
 
-    console.log(
-      'Raw Tech Insights API response:',
-      JSON.stringify(response, null, 2),
-    );
+    // console.log(
+    //   'Raw Tech Insights API response:',
+    //   JSON.stringify(response, null, 2),
+    // );
 
     const facts = response?.githubAdvancedSecurityFactRetriever?.facts;
 
     if (!facts) {
-      console.error(
-        'No GitHub Security facts found for entity:',
-        stringifyEntityRef(entity),
-      );
+      // console.error(
+      //   'No GitHub Security facts found for entity:',
+      //   stringifyEntityRef(entity),
+      // );
       return {
         openCodeScanningAlertCount: 0,
         openSecretScanningAlertCount: 0,
@@ -241,11 +241,11 @@ export const getGitHubSecurityFacts = async (
         secretScanningAlerts as GitHubSecurityFacts['secretScanningAlerts'],
     };
   } catch (error) {
-    console.error(
-      'Error fetching GitHub Security facts for entity:',
-      stringifyEntityRef(entity),
-      error,
-    );
+    // console.error(
+    //   'Error fetching GitHub Security facts for entity:',
+    //   stringifyEntityRef(entity),
+    //   error,
+    // );
     return {
       openCodeScanningAlertCount: 0,
       openSecretScanningAlertCount: 0,
