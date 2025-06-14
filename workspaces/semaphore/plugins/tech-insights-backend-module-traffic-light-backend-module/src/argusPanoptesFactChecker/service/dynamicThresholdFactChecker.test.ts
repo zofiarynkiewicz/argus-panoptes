@@ -582,7 +582,7 @@ describe('DynamicThresholdFactChecker', () => {
       });
 
       // Test: equal operator returns false when string value is not equal to the threshold
-      test('evaluates equal operator correctly with strings', async () => {
+      test('equal operator correctly with strings evaluation', async () => {
         mockRepository.getLatestFactsByIds.mockResolvedValueOnce({
           'test-fact-retriever': {
             id: 'test-fact-retriever',
@@ -609,7 +609,7 @@ describe('DynamicThresholdFactChecker', () => {
       });
 
       // Test: notEqual operator returns true when string value is not equal to the threshold
-      test('evaluates notEqual operator correctly with strings', async () => {
+      test('notEqual operator correctly with strings evaluation', async () => {
         const systemEntityWithNotEqualOp = {
           ...systemEntityWithStringThreshold,
           metadata: {
@@ -649,7 +649,7 @@ describe('DynamicThresholdFactChecker', () => {
       });
 
       // Test: notEqual operator returns false when string value is equal to the threshold
-      test('evaluates notEqual operator correctly with strings', async () => {
+      test('checks notEqual operator correctly with strings', async () => {
         const systemEntityWithNotEqualOp = {
           ...systemEntityWithStringThreshold,
           metadata: {

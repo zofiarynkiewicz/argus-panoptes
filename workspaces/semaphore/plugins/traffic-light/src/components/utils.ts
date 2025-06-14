@@ -51,7 +51,7 @@ async function loadWorkflowConfig(): Promise<WorkflowConfig> {
       }
     );
   } catch (err) {
-    console.error('Config load error:', err);
+    // console.error('Config load error:', err);
     return { exclude: [], critical: [], sampleIfNoCritical: 0 };
   }
 }
@@ -69,7 +69,7 @@ export async function getGitHubRepoStatus(
   });
 
   if (!response.ok) {
-    console.error('Failed to fetch GitHub data:', response.statusText);
+    // console.error('Failed to fetch GitHub data:', response.statusText);
     return {
       color: 'red',
       reason: `GitHub API error: ${response.statusText} `,

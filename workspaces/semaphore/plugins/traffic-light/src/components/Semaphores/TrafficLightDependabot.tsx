@@ -130,7 +130,7 @@ export const TrafficLightDependabot = ({
       setReason(dependabotColorAndReason.reason);
     };
     fetchData();
-  }, [entities, techInsightsApi]);
+  }, [entities, techInsightsApi, dependabotUtils, systemName]);
 
   return <BaseTrafficLight color={color} tooltip={reason} onClick={onClick} />;
 };

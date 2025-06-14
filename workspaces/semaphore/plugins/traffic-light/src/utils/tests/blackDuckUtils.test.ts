@@ -8,7 +8,7 @@ import { CompoundEntityRef, Entity } from '@backstage/catalog-model';
 import {
   DynamicThresholdResult,
   DynamicThresholdCheck,
-} from '../../../../tech-insights-backend-module-traffic-light-backend-module/src/argusPanoptesFactChecker/service/dynamicThresholdFactChecker';
+} from '@internal/plugin-tech-insights-backend-module-traffic-light-backend-module/src/argusPanoptesFactChecker/service/dynamicThresholdFactChecker';
 
 // Mock the TechInsightsApi
 const mockTechInsightsApi = {

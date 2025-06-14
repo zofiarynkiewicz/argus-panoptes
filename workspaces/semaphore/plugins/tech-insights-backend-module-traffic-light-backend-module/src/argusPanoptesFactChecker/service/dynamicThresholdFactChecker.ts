@@ -45,6 +45,33 @@ export class DynamicThresholdFactChecker
     private readonly checks: DynamicThresholdCheck[],
   ) {}
 
+  /**
+   * Helper function to format fact value with correct typing
+   */
+  private formatFactValue(
+    value: unknown, 
+    isNumeric: boolean
+  ): string | number | boolean | [] {
+    if (isNumeric && typeof value === 'number') {
+      return value;
+    }
+    
+    if (typeof value === 'string') {
+      return value;
+    }
+    
+    if (typeof value === 'boolean') {
+      return value;
+    }
+    
+    if (Array.isArray(value)) {
+      return value.length === 0 ? [] : String(value);
+    }
+    
+    // Fallback to string for any other type
+    return String(value);
+  }
+
   // Run checks for a given entity
   async runChecks(
     entityRef: string,
@@ -181,15 +208,7 @@ export class DynamicThresholdFactChecker
           id: factId,
           type: isNumber ? 'integer' : 'string',
           description: `Fact for ${factId}`,
-          value: isNumber
-            ? rawValue
-            : typeof rawValue === 'string'
-            ? rawValue
-            : Array.isArray(rawValue)
-            ? rawValue.length === 0
-              ? []
-              : String(rawValue) // fallback for non-empty arrays
-            : String(rawValue), // fallback
+          value: this.formatFactValue(rawValue, isNumber),
         };
 
         return {

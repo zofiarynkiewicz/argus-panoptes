@@ -26,14 +26,13 @@ const DEFAULT_CHECKS: AzureDevOpsBugChecks = {
 };
 
 /**
- * Convenience wrapper around {@link TechInsightsApi} for Azure DevOps bug
- * facts and checks.
+ * Convenience wrapper around {@link TechInsightsApi} for AzureDevOps bug facts and checks.
  */
 export class AzureUtils {
-  constructor() {}
+  // constructor() {}
 
   /**
-   * Fetches the Azure DevOps bug facts for the given entity.
+   * Fetches the AzureDevOps bug facts for the given entity.
    */
   async getAzureDevOpsBugFacts(
     api: TechInsightsApi,
@@ -49,7 +48,7 @@ export class AzureUtils {
         'azure-devops-bugs-retriever',
       ]);
 
-      //console.log('📦 Raw Azure DevOps facts:', response);
+      // console.log('📦 Raw Azure DevOps facts:', response);
 
       const facts = response?.['azure-devops-bugs-retriever']?.facts;
 
@@ -77,7 +76,7 @@ export class AzureUtils {
   }
 
   /**
-   * Runs the Azure DevOps bug‑count Tech‑Insights check.
+   * Runs the AzureDevOps bug‑count Tech‑Insights check.
    */
   async getAzureDevOpsBugChecks(
     api: TechInsightsApi,

@@ -30,7 +30,7 @@ export interface DependabotChecks {
  * methods for Dependabot facts & checks.
  */
 export class DependabotUtils {
-  constructor() {}
+  // constructor() {}
 
   async getTop5CriticalDependabotRepos(
     techInsightsApi: TechInsightsApi,
@@ -106,10 +106,6 @@ export class DependabotUtils {
       const facts = response?.dependabotFactRetriever?.facts;
 
       if (!facts) {
-        console.error(
-          '❌ No facts found for entity:',
-          stringifyEntityRef(entity),
-        );
         return { critical: 0, high: 0, medium: 0 };
       }
 
