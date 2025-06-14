@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { Entity } from '@backstage/catalog-model';
 import { useApi } from '@backstage/core-plugin-api';
 import { techInsightsApiRef } from '@backstage/plugin-tech-insights';
@@ -21,9 +21,9 @@ export const FoundationTrafficLight = ({
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
 
-  const foundationUtils = React.useMemo(
+  const foundationUtils = useMemo(
     () => new FoundationUtils(),
-    [techInsightsApi],
+    [],
   );
 
   useEffect(() => {

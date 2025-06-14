@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC, useMemo, useState, useEffect} from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -32,7 +32,7 @@ interface SonarSemaphoreDialogProps {
   entities?: Entity[];
 }
 
-export const SonarQubeSemaphoreDialog: React.FC<SonarSemaphoreDialogProps> = ({
+export const SonarQubeSemaphoreDialog: FC<SonarSemaphoreDialogProps> = ({
   open,
   onClose,
   entities = [],
@@ -40,20 +40,20 @@ export const SonarQubeSemaphoreDialog: React.FC<SonarSemaphoreDialogProps> = ({
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
-  const sonarUtils = React.useMemo(
+  const sonarUtils = useMemo(
     () => new SonarCloudUtils(),
-    [techInsightsApi],
+    [],
   );
 
-  const [data, setData] = React.useState<SemaphoreData>({
+  const [data, setData] = useState<SemaphoreData>({
     color: 'gray',
     metrics: {},
     summary: 'No data available for this metric.',
     details: [],
   });
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open || entities.length === 0) return;
     setIsLoading(true);
 
@@ -189,7 +189,7 @@ export const SonarQubeSemaphoreDialog: React.FC<SonarSemaphoreDialogProps> = ({
     };
 
     fetchSonarData();
-  }, [open, entities, sonarUtils, techInsightsApi]);
+  }, [open, entities, sonarUtils, techInsightsApi, catalogApi]);
 
   const renderMetrics = () => (
     <Grid container spacing={2}>

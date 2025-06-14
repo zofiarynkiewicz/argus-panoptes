@@ -98,9 +98,9 @@ export const ReportingSemaphoreDialog: FC<
             }
           }
         } catch (err) {
-          console.warn(
-            'Failed to get threshold annotation, using default 0.33',
-          );
+          // console.warn(
+          //   'Failed to get threshold annotation, using default 0.33',
+          // );
         }
 
         // 2. Gather facts + checks in parallel

@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC, useMemo, useState, useEffect} from 'react';
 import { Grid, Paper, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -39,34 +39,34 @@ interface PreproductionSemaphoreDialogProps {
   entities?: Entity[];
 }
 
-export const PreproductionSemaphoreDialog: React.FC<
+export const PreproductionSemaphoreDialog: FC<
   PreproductionSemaphoreDialogProps
 > = ({ open, onClose, entities = [] }) => {
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
-  const preprodUtils = React.useMemo(() => new PreproductionUtils(), []);
+  const preprodUtils = useMemo(() => new PreproductionUtils(), []);
 
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [metrics, setMetrics] = React.useState({
+  const [isLoading, setIsLoading] = useState(false);
+  const [metrics, setMetrics] = useState({
     totalSuccess: 0,
     totalFailure: 0,
     totalRuns: 0,
     successRate: 0,
   });
 
-  const [lowestSuccessRepos, setLowestSuccessRepos] = React.useState<
+  const [lowestSuccessRepos, setLowestSuccessRepos] = useState<
     { name: string; url: string; successRate: number }[]
   >([]);
 
-  const [data, setData] = React.useState<SemaphoreData>({
+  const [data, setData] = useState<SemaphoreData>({
     color: 'gray',
     metrics: {},
     summary: 'No data available for this metric.',
     details: [],
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open || entities.length === 0) return;
 
     setIsLoading(true);
@@ -112,7 +112,7 @@ export const PreproductionSemaphoreDialog: React.FC<
             }
           }
         } catch (err) {
-          console.warn('Failed to get system configuration, using defaults');
+          // console.warn('Failed to get system configuration, using defaults');
         }
 
         // 2. Filter entities to only include configured repositories
@@ -246,7 +246,7 @@ export const PreproductionSemaphoreDialog: React.FC<
           details: [],
         });
       } catch (e) {
-        console.error('Failed to fetch pipeline data:', e);
+        // console.error('Failed to fetch pipeline data:', e);
         setMetrics({
           totalSuccess: 0,
           totalFailure: 0,

@@ -77,7 +77,7 @@ const DEFAULT_CHECKS: GitHubSecurityChecks = {
  * methods for GitHub Advanced Security facts & checks.
  */
 export class GithubAdvancedSecurityUtils {
-  constructor() {}
+  // constructor() {}
 
   /**
    * Function to fetch GitHub security facts for a given entity
