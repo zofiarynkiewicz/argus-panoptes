@@ -6,3 +6,9 @@
  */
 
 export { default } from './module';
+
+// Export types needed by other modules
+export type {
+    DynamicThresholdResult,
+    DynamicThresholdCheck,
+  } from './argusPanoptesFactChecker/service/dynamicThresholdFactChecker';

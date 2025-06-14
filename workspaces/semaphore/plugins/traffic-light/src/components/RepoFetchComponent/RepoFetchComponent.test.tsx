@@ -6,23 +6,23 @@ global.fetch = jest.fn();
 
 describe('RepoFetchComponent', () => {
   // Setup console.error spy to test error handling
-  const originalConsoleError = console.error;
+  // sconst originalConsoleError = console.error;
   let consoleErrorSpy: jest.SpyInstance;
 
   beforeEach(() => {
     // Reset mocks before each test
     jest.clearAllMocks();
-    consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    // consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
   });
 
-  afterEach(() => {
-    // Restore console.error after each test
-    consoleErrorSpy.mockRestore();
-  });
+  // afterEach(() => {
+  //   // Restore console.error after each test
+  //   consoleErrorSpy.mockRestore();
+  // });
 
-  afterAll(() => {
-    console.error = originalConsoleError;
-  });
+  // afterAll(() => {
+  //   console.error = originalConsoleError;
+  // });
 
   it('should fetch repos and call onData with simplified results', async () => {
     // Arrange

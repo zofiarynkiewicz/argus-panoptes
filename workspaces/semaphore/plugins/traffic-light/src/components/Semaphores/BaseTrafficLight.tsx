@@ -1,5 +1,5 @@
 // components/TrafficLights/BaseTrafficLight.tsx
-import React from 'react';
+import {FC } from 'react';
 import { Box, Tooltip } from '@material-ui/core';
 
 type Color = 'red' | 'green' | 'yellow' | 'gray' | 'white';
@@ -10,7 +10,7 @@ interface BaseTrafficLightProps {
   onClick?: () => void;
 }
 
-export const BaseTrafficLight: React.FC<BaseTrafficLightProps> = ({
+export const BaseTrafficLight: FC<BaseTrafficLightProps> = ({
   color,
   tooltip,
   onClick,

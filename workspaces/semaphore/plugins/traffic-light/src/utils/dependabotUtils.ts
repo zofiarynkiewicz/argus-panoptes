@@ -49,10 +49,10 @@ export class DependabotUtils {
           medium: typeof facts.medium === 'number' ? facts.medium : 0,
         });
       } catch (err) {
-        console.warn(
-          `⚠️ Could not fetch dependabot fact for ${entityRef.name}`,
-          err,
-        );
+        // console.warn(
+        //   `⚠️ Could not fetch dependabot fact for ${entityRef.name}`,
+        //   err,
+        // );
         results.push({
           name: entity.metadata.name,
           critical: 0,

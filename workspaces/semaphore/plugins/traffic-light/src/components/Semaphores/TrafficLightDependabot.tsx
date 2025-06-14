@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { BaseTrafficLight } from './BaseTrafficLight';
 import { useApi } from '@backstage/core-plugin-api';
 import { techInsightsApiRef } from '@backstage/plugin-tech-insights';
@@ -29,11 +29,11 @@ export const determineDependabotColor = async (
   const finalSystemNameString =
     typeof finalSystemName === 'string' ? finalSystemName : undefined;
 
-  console.log(
-    '🔌 Checking Dependabot status for entities:',
-    filteredEntities.map(e => e.metadata.name),
-  );
-  console.log('🧭 Using system name for threshold:', finalSystemNameString);
+  // console.log(
+  //   '🔌 Checking Dependabot status for entities:',
+  //   filteredEntities.map(e => e.metadata.name),
+  // );
+  // console.log('🧭 Using system name for threshold:', finalSystemNameString);
 
   if (!finalSystemNameString) {
     return { color: 'gray', reason: 'No valid system name available' };
@@ -96,9 +96,9 @@ export const TrafficLightDependabot = ({
   const [reason, setReason] = useState('Fetching Dependabot status...');
 
   const techInsightsApi = useApi(techInsightsApiRef);
-  const dependabotUtils = React.useMemo(
+  const dependabotUtils = useMemo(
     () => new DependabotUtils(),
-    [techInsightsApi],
+    [],
   );
 
   useEffect(() => {
@@ -108,7 +108,7 @@ export const TrafficLightDependabot = ({
       return;
     }
 
-    console.log('🚦 Rendering with entities:', entities);
+    // console.log('🚦 Rendering with entities:', entities);
     const fetchData = async () => {
       const filteredEntities = entities.filter(
         e => e.spec?.system === systemName,

@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC, useState, useEffect, useMemo} from 'react';
 import { Grid, Paper, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -35,16 +35,16 @@ interface AzureBugInsightsDialogProps {
   entities?: Entity[];
 }
 
-export const AzureDevOpsSemaphoreDialog: React.FC<
+export const AzureDevOpsSemaphoreDialog: FC<
   AzureBugInsightsDialogProps
 > = ({ open, onClose, entities = [] }) => {
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
-  const azureUtils = React.useMemo(() => new AzureUtils(), []);
+  const azureUtils = useMemo(() => new AzureUtils(), []);
   const catalogApi = useApi(catalogApiRef);
 
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [projectBugs, setProjectBugs] = React.useState<
+  const [isLoading, setIsLoading] = useState(false);
+  const [projectBugs, setProjectBugs] = useState<
     {
       project: string;
       bugCount: number;
@@ -52,14 +52,14 @@ export const AzureDevOpsSemaphoreDialog: React.FC<
       entities: { entityName: string }[];
     }[]
   >([]);
-  const [data, setData] = React.useState<SemaphoreData>({
+  const [data, setData] = useState<SemaphoreData>({
     color: 'gray',
     metrics: {},
     summary: 'No data available for this metric.',
     details: [],
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open || entities.length === 0) return;
 
     setIsLoading(true);
@@ -91,9 +91,9 @@ export const AzureDevOpsSemaphoreDialog: React.FC<
             }
           }
         } catch (err) {
-          console.warn(
-            'Could not fetch system threshold annotation; using default 0.33',
-          );
+          // console.warn(
+          //   'Could not fetch system threshold annotation; using default 0.33',
+          // );
         }
 
         const projectBugMap = new Map<
@@ -191,7 +191,7 @@ export const AzureDevOpsSemaphoreDialog: React.FC<
           details: [],
         });
       } catch (e) {
-        console.error('❌ Failed to fetch Azure DevOps bug data:', e);
+        // console.error('❌ Failed to fetch Azure DevOps bug data:', e);
         setProjectBugs([]);
         setData({
           color: 'gray',
@@ -205,7 +205,7 @@ export const AzureDevOpsSemaphoreDialog: React.FC<
     };
 
     fetchBugMetrics();
-  }, [open, entities, techInsightsApi, azureUtils]);
+  }, [open, entities, techInsightsApi, azureUtils, catalogApi]);
 
   const totalBugCount = projectBugs.reduce((sum, p) => sum + p.bugCount, 0);
   const top5Projects = projectBugs.filter(p => p.bugCount > 0).slice(0, 5);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -17,7 +17,7 @@ interface DialogComponentProps {
   items: { name: string; color: string }[];
 }
 
-export const DialogComponent: React.FC<DialogComponentProps> = ({
+export const DialogComponent: FC<DialogComponentProps> = ({
   open,
   onClose,
   title,

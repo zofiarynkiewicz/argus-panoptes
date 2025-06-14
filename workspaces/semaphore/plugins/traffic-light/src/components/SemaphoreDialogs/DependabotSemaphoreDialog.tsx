@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC, useState, useEffect, useMemo} from 'react';
 import {
   Grid,
   Paper,
@@ -61,25 +61,25 @@ interface DependabotSemaphoreDialogProps {
   system: string;
 }
 
-export const DependabotSemaphoreDialog: React.FC<
+export const DependabotSemaphoreDialog: FC<
   DependabotSemaphoreDialogProps
 > = ({ open, onClose, entities = [], system }) => {
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
-  const dependabotUtils = React.useMemo(
+  const dependabotUtils = useMemo(
     () => new DependabotUtils(),
-    [techInsightsApi],
+    [],
   );
-  const [data, setData] = React.useState<SemaphoreData>({
+  const [data, setData] = useState<SemaphoreData>({
     color: 'gray',
     metrics: {},
     summary: 'No data available for this metric.',
     details: [],
   });
-  const [topRepos, setTopRepos] = React.useState<RepoAlertSummary[]>([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [topRepos, setTopRepos] = useState<RepoAlertSummary[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open || entities.length === 0) {
       setData({
         color: 'gray',
@@ -143,14 +143,16 @@ export const DependabotSemaphoreDialog: React.FC<
 
         const totalIssues = totalCritical + totalHigh + totalMedium;
 
-        const summary =
-          totalCritical > 0
-            ? `${totalCritical} critical issues found`
-            : totalHigh > 0
-            ? `${totalHigh} high severity issues found`
-            : totalMedium > 0
-            ? `${totalMedium} medium severity issues found`
-            : 'No Dependabot security issues found.';
+        let summary;
+        if (totalCritical > 0) {
+          summary = `${totalCritical} critical issues found`;
+        } else if (totalHigh > 0) {
+          summary = `${totalHigh} high severity issues found`;
+        } else if (totalMedium > 0) {
+          summary = `${totalMedium} medium severity issues found`;
+        } else {
+          summary = 'No Dependabot security issues found.';
+}
 
         const trafficLightcolor = await determineDependabotColor(
           system,
@@ -189,7 +191,7 @@ export const DependabotSemaphoreDialog: React.FC<
     };
 
     fetchDependabotData();
-  }, [open, entities, dependabotUtils, techInsightsApi]);
+  }, [open, entities, dependabotUtils, techInsightsApi, system]);
 
   const getRepoClassName = (repo: RepoAlertSummary) => {
     if (repo.critical > 0) return `${classes.repoItem} ${classes.criticalRepo}`;

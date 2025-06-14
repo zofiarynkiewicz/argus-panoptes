@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC, useMemo, useEffect, useState} from 'react';
 import { Grid, Paper, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -39,34 +39,34 @@ interface ReportingSemaphoreDialogProps {
   entities?: Entity[];
 }
 
-export const ReportingSemaphoreDialog: React.FC<
+export const ReportingSemaphoreDialog: FC<
   ReportingSemaphoreDialogProps
 > = ({ open, onClose, entities = [] }) => {
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
-  const reportingUtils = React.useMemo(() => new ReportingUtils(), []);
+  const reportingUtils = useMemo(() => new ReportingUtils(), []);
 
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [metrics, setMetrics] = React.useState({
+  const [isLoading, setIsLoading] = useState(false);
+  const [metrics, setMetrics] = useState({
     totalSuccess: 0,
     totalFailure: 0,
     totalRuns: 0,
     successRate: 0,
   });
 
-  const [lowestSuccessRepos, setLowestSuccessRepos] = React.useState<
+  const [lowestSuccessRepos, setLowestSuccessRepos] = useState<
     { name: string; url: string; successRate: number }[]
   >([]);
 
-  const [data, setData] = React.useState<SemaphoreData>({
+  const [data, setData] = useState<SemaphoreData>({
     color: 'gray',
     metrics: {},
     summary: 'No data available for this metric.',
     details: [],
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!open || entities.length === 0) return;
 
     setIsLoading(true);
@@ -174,11 +174,11 @@ export const ReportingSemaphoreDialog: React.FC<
         const lowest = [...results]
           .sort((a, b) => a.successRate - b.successRate)
           .slice(0, 5)
-          .map(({ name, url, successRate }) => ({
+          .map(({ name, url, successRate: repoSuccessRate }) => ({
             name,
             url,
-            successRate,
-          }));
+            successRate: repoSuccessRate,
+          }))
 
         setMetrics({
           totalSuccess,
@@ -201,7 +201,7 @@ export const ReportingSemaphoreDialog: React.FC<
           details: [],
         });
       } catch (e) {
-        console.error('Failed to fetch pipeline data:', e);
+        // console.error('Failed to fetch pipeline data:', e);
         setMetrics({
           totalSuccess: 0,
           totalFailure: 0,

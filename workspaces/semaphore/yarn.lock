@@ -7757,6 +7757,7 @@ __metadata:
     "@backstage/test-utils": "npm:^1.7.7"
     "@backstage/theme": "npm:^0.6.5"
     "@backstage/types": "npm:^1.2.1"
+    "@internal/plugin-tech-insights-backend-module-traffic-light-backend-module": "workspace:^"
     "@material-ui/core": "npm:^4.9.13"
     "@material-ui/icons": "npm:^4.9.1"
     "@material-ui/lab": "npm:^4.0.0-alpha.61"

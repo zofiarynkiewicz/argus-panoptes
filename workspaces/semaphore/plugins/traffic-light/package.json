@@ -53,6 +53,7 @@
     "@backstage/core-app-api": "^1.16.1",
     "@backstage/dev-utils": "^1.1.9",
     "@backstage/test-utils": "^1.7.7",
+    "@internal/plugin-tech-insights-backend-module-traffic-light-backend-module": "workspace:^",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.0.0",

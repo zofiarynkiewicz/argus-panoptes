@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -19,7 +19,7 @@ interface ThresholdDialogProps {
   >;
 }
 
-export const ThresholdDialog: React.FC<ThresholdDialogProps> = ({
+export const ThresholdDialog: FC<ThresholdDialogProps> = ({
   open,
   onClose,
   onExited,

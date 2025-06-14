@@ -1,4 +1,4 @@
-import React from 'react';
+import {ReactNode, FC} from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -101,10 +101,10 @@ export interface BaseSemaphoreDialogProps {
   title: string;
   data: SemaphoreData;
   isLoading?: boolean;
-  renderMetrics?: () => React.ReactNode;
+  renderMetrics?: () => ReactNode;
 }
 
-export const BaseSemaphoreDialog: React.FC<BaseSemaphoreDialogProps> = ({
+export const BaseSemaphoreDialog: FC<BaseSemaphoreDialogProps> = ({
   open,
   onClose,
   title,

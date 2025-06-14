@@ -320,7 +320,7 @@ export const GitHubSecurityTrafficLight = ({
         setColor(result.color);
         setReason(result.reason);
       } catch (err) {
-        console.error('Error fetching GitHub Security data:', err);
+        // console.error('Error fetching GitHub Security data:', err);
         setColor('gray');
         setReason('Failed to retrieve GitHub Security data');
       }
