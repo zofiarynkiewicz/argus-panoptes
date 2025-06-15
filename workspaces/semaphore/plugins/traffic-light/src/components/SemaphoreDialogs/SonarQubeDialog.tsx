@@ -1,4 +1,4 @@
-import {FC, useMemo, useState, useEffect} from 'react';
+import { FC, useMemo, useState, useEffect } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -40,10 +40,7 @@ export const SonarQubeSemaphoreDialog: FC<SonarSemaphoreDialogProps> = ({
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
-  const sonarUtils = useMemo(
-    () => new SonarCloudUtils(),
-    [],
-  );
+  const sonarUtils = useMemo(() => new SonarCloudUtils(), []);
 
   const [data, setData] = useState<SemaphoreData>({
     color: 'gray',

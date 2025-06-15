@@ -1,4 +1,4 @@
-import {FC, useState, useEffect, useMemo} from 'react';
+import { FC, useState, useEffect, useMemo } from 'react';
 import {
   Grid,
   Paper,
@@ -61,15 +61,15 @@ interface DependabotSemaphoreDialogProps {
   system: string;
 }
 
-export const DependabotSemaphoreDialog: FC<
-  DependabotSemaphoreDialogProps
-> = ({ open, onClose, entities = [], system }) => {
+export const DependabotSemaphoreDialog: FC<DependabotSemaphoreDialogProps> = ({
+  open,
+  onClose,
+  entities = [],
+  system,
+}) => {
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
-  const dependabotUtils = useMemo(
-    () => new DependabotUtils(),
-    [],
-  );
+  const dependabotUtils = useMemo(() => new DependabotUtils(), []);
   const [data, setData] = useState<SemaphoreData>({
     color: 'gray',
     metrics: {},
@@ -152,7 +152,7 @@ export const DependabotSemaphoreDialog: FC<
           summary = `${totalMedium} medium severity issues found`;
         } else {
           summary = 'No Dependabot security issues found.';
-}
+        }
 
         const trafficLightcolor = await determineDependabotColor(
           system,

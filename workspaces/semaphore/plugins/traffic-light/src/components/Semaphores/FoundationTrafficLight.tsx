@@ -21,10 +21,7 @@ export const FoundationTrafficLight = ({
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
 
-  const foundationUtils = useMemo(
-    () => new FoundationUtils(),
-    [],
-  );
+  const foundationUtils = useMemo(() => new FoundationUtils(), []);
 
   useEffect(() => {
     const fetchData = async () => {

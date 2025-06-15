@@ -1,4 +1,4 @@
-import {FC, useState, useEffect, useMemo} from 'react';
+import { FC, useState, useEffect, useMemo } from 'react';
 import { Grid, Paper, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -35,9 +35,11 @@ interface AzureBugInsightsDialogProps {
   entities?: Entity[];
 }
 
-export const AzureDevOpsSemaphoreDialog: FC<
-  AzureBugInsightsDialogProps
-> = ({ open, onClose, entities = [] }) => {
+export const AzureDevOpsSemaphoreDialog: FC<AzureBugInsightsDialogProps> = ({
+  open,
+  onClose,
+  entities = [],
+}) => {
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
   const azureUtils = useMemo(() => new AzureUtils(), []);

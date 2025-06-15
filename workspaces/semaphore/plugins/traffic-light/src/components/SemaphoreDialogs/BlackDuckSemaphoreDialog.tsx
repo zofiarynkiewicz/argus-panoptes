@@ -1,4 +1,4 @@
-import {FC, useState, useMemo, useEffect} from 'react';
+import { FC, useState, useMemo, useEffect } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -32,16 +32,15 @@ interface BlackDuckSemaphoreDialogProps {
   entities?: Entity[];
 }
 
-export const BlackDuckSemaphoreDialog: FC<
-  BlackDuckSemaphoreDialogProps
-> = ({ open, onClose, entities = [] }) => {
+export const BlackDuckSemaphoreDialog: FC<BlackDuckSemaphoreDialogProps> = ({
+  open,
+  onClose,
+  entities = [],
+}) => {
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
-  const blackDuckUtils = useMemo(
-    () => new BlackDuckUtils(),
-    [],
-  );
+  const blackDuckUtils = useMemo(() => new BlackDuckUtils(), []);
 
   const [data, setData] = useState<SemaphoreData>({
     color: 'gray',

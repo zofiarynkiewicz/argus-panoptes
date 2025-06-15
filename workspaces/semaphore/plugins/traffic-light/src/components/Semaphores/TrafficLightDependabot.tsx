@@ -96,10 +96,7 @@ export const TrafficLightDependabot = ({
   const [reason, setReason] = useState('Fetching Dependabot status...');
 
   const techInsightsApi = useApi(techInsightsApiRef);
-  const dependabotUtils = useMemo(
-    () => new DependabotUtils(),
-    [],
-  );
+  const dependabotUtils = useMemo(() => new DependabotUtils(), []);
 
   useEffect(() => {
     if (!entities.length) {

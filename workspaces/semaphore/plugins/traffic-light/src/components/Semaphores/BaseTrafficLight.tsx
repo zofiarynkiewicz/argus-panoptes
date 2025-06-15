@@ -1,5 +1,5 @@
 // components/TrafficLights/BaseTrafficLight.tsx
-import {FC } from 'react';
+import { FC } from 'react';
 import { Box, Tooltip } from '@material-ui/core';
 
 type Color = 'red' | 'green' | 'yellow' | 'gray' | 'white';

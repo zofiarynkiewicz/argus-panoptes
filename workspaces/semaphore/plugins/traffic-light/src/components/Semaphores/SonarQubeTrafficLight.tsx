@@ -135,10 +135,7 @@ export const SonarQubeTrafficLight = ({
   const [reason, setReason] = useState('Loading SonarQube data...');
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
-  const sonarUtils = useMemo(
-    () => new SonarCloudUtils(),
-    [],
-  );
+  const sonarUtils = useMemo(() => new SonarCloudUtils(), []);
 
   useEffect(() => {
     const fetchData = async () => {

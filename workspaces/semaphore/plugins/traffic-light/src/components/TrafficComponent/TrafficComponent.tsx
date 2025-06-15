@@ -118,7 +118,7 @@ export const TrafficComponent = () => {
         // setDetailedDialogOpen(true);
         break;
       default:
-        // console.warn(`No dialog handler for semaphore type: ${semaphoreType}`);
+      // console.warn(`No dialog handler for semaphore type: ${semaphoreType}`);
     }
   };
 

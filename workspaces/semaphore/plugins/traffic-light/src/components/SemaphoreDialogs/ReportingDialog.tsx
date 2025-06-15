@@ -1,4 +1,4 @@
-import {FC, useMemo, useEffect, useState} from 'react';
+import { FC, useMemo, useEffect, useState } from 'react';
 import { Grid, Paper, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -39,9 +39,11 @@ interface ReportingSemaphoreDialogProps {
   entities?: Entity[];
 }
 
-export const ReportingSemaphoreDialog: FC<
-  ReportingSemaphoreDialogProps
-> = ({ open, onClose, entities = [] }) => {
+export const ReportingSemaphoreDialog: FC<ReportingSemaphoreDialogProps> = ({
+  open,
+  onClose,
+  entities = [],
+}) => {
   const classes = useStyles();
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
@@ -178,7 +180,7 @@ export const ReportingSemaphoreDialog: FC<
             name,
             url,
             successRate: repoSuccessRate,
-          }))
+          }));
 
         setMetrics({
           totalSuccess,

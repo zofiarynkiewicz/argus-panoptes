@@ -136,10 +136,7 @@ export const BlackDuckTrafficLight = ({
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
 
-  const blackDuckUtils = useMemo(
-    () => new BlackDuckUtils(),
-    [],
-  );
+  const blackDuckUtils = useMemo(() => new BlackDuckUtils(), []);
 
   useEffect(() => {
     const fetchData = async () => {

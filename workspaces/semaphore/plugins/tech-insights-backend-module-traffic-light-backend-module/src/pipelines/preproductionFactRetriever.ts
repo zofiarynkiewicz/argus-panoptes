@@ -182,12 +182,12 @@ export const githubPipelineStatusFactRetriever: FactRetriever = {
         const workflowsApiUrl = `https://api.github.com/repos/${owner}/${repoName}/actions/workflows`;
         let workflowDefinitions: WorkflowDefinition[] = [];
 
-          const workflowsResponse = await fetch(workflowsApiUrl, { headers });
+        const workflowsResponse = await fetch(workflowsApiUrl, { headers });
 
-          if (workflowsResponse.ok) {
-            const workflowsData = await workflowsResponse.json();
-            workflowDefinitions = workflowsData.workflows || [];
-          }
+        if (workflowsResponse.ok) {
+          const workflowsData = await workflowsResponse.json();
+          workflowDefinitions = workflowsData.workflows || [];
+        }
 
         // Fetch all workflow runs from the main branch using pagination
         const apiUrl = `https://api.github.com/repos/${owner}/${repoName}/actions/runs?branch=main&per_page=100`;

@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect} from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';
@@ -109,10 +109,7 @@ export const GitHubSemaphoreDialog: React.FC<GitHubSemaphoreDialogProps> = ({
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
 
-  const githubASUtils = useMemo(
-    () => new GithubAdvancedSecurityUtils(),
-    [],
-  );
+  const githubASUtils = useMemo(() => new GithubAdvancedSecurityUtils(), []);
 
   const [data, setData] = useState<SemaphoreData>({
     color: 'gray',

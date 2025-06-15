@@ -49,25 +49,25 @@ export class DynamicThresholdFactChecker
    * Helper function to format fact value with correct typing
    */
   private formatFactValue(
-    value: unknown, 
-    isNumeric: boolean
+    value: unknown,
+    isNumeric: boolean,
   ): string | number | boolean | [] {
     if (isNumeric && typeof value === 'number') {
       return value;
     }
-    
+
     if (typeof value === 'string') {
       return value;
     }
-    
+
     if (typeof value === 'boolean') {
       return value;
     }
-    
+
     if (Array.isArray(value)) {
       return value.length === 0 ? [] : String(value);
     }
-    
+
     // Fallback to string for any other type
     return String(value);
   }

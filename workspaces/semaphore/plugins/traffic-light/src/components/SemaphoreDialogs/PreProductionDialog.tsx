@@ -1,4 +1,4 @@
-import {FC, useMemo, useState, useEffect} from 'react';
+import { FC, useMemo, useState, useEffect } from 'react';
 import { Grid, Paper, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useApi } from '@backstage/core-plugin-api';

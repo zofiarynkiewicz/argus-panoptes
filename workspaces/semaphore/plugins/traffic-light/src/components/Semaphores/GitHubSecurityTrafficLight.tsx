@@ -1,4 +1,4 @@
-import {useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { Entity } from '@backstage/catalog-model';
 import { useApi } from '@backstage/core-plugin-api';
 import { techInsightsApiRef } from '@backstage/plugin-tech-insights';
@@ -266,10 +266,7 @@ export const GitHubSecurityTrafficLight = ({
   const techInsightsApi = useApi(techInsightsApiRef);
   const catalogApi = useApi(catalogApiRef);
 
-  const githubASUtils = useMemo(
-    () => new GithubAdvancedSecurityUtils(),
-    [],
-  );
+  const githubASUtils = useMemo(() => new GithubAdvancedSecurityUtils(), []);
 
   useEffect(() => {
     const fetchGitHubSecurityData = async () => {
