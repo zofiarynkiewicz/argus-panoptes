@@ -4,10 +4,33 @@
 
 ```ts
 import { BackendFeature } from '@backstage/backend-plugin-api';
+import { FactResponse } from '@backstage-community/plugin-tech-insights-common';
 
 // @public
 const _default: BackendFeature;
 export default _default;
+
+// Warning: (ae-missing-release-tag) "DynamicThresholdCheck" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public
+export type DynamicThresholdCheck = {
+  id: string;
+  name: string;
+  type: string;
+  factIds: string[];
+  annotationKeyThreshold: string;
+  annotationKeyOperator: string;
+  description: string;
+};
+
+// Warning: (ae-missing-release-tag) "DynamicThresholdResult" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public
+export type DynamicThresholdResult = {
+  check: DynamicThresholdCheck;
+  facts: FactResponse;
+  result: boolean;
+};
 
 // Warnings were encountered during analysis:
 //
