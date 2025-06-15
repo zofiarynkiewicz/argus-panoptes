@@ -280,19 +280,21 @@ export const GitHubSemaphoreDialog: React.FC<GitHubSemaphoreDialogProps> = ({
           summary = trafficLightResult.reason;
         } else {
           // Fallback to simple logic if no thresholds available
-          color =
-            critical > 0 || high > 0
-              ? 'red'
-              : medium > 0 || low > 0
-              ? 'yellow'
-              : 'green';
+          if (critical > 0 || high > 0) {
+            color = 'red';
+          } else if (medium > 0 || low > 0) {
+            color = 'yellow';
+          } else {
+            color = 'green';
+          }
 
-          summary =
-            color === 'red'
-              ? 'Critical security issues require immediate attention.'
-              : color === 'yellow'
-              ? 'Security issues need to be addressed.'
-              : 'No security issues found.';
+          if (color === 'red') {
+            summary = 'Critical security issues require immediate attention.';
+          } else if (color === 'yellow') {
+            summary = 'Security issues need to be addressed.';
+          } else {
+            summary = 'No security issues found.';
+          }
         }
 
         // Sort details by severity before setting the data

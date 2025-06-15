@@ -78,10 +78,10 @@ export const determineSonarQubeColor = async (
       ),
     );
 
-    const totalFailedQualityGate = results.reduce((acc, res) => {
-      acc += res.quality_gate !== 'OK' ? 1 : 0;
-      return acc;
-    }, 0);
+    const totalFailedQualityGate = results.reduce(
+      (acc, res) => acc + (res.quality_gate !== 'OK' ? 1 : 0),
+      0,
+    );
 
     // If the number of entities that failed the quality gate check is above the red threshold
     // Set the colour to red

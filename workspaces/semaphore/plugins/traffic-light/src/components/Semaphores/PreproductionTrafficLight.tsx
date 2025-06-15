@@ -72,7 +72,9 @@ export const PreproductionTrafficLight = ({
                 .filter(name => name.length > 0);
             }
           }
-        } catch (err) {}
+        } catch (err) {
+          // Could not fetch system configuration; using defaults.
+        }
 
         // 2. Filter entities to only include configured repositories
         const filteredEntities =

@@ -66,7 +66,9 @@ export const ReportingTrafficLight = ({
               redThreshold = parseFloat(thresholdAnnotation);
             }
           }
-        } catch (err) {}
+        } catch (err) {
+          // Could not fetch system configuration; using defaults.
+        }
 
         // 2. Run reporting pipeline checks
         const results = await Promise.all(
