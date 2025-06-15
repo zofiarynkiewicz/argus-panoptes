@@ -86,12 +86,10 @@ catalog:
     # Systems
     - type: file
       target: ../../examples/systems/*.yaml
-      
+
     # Components
     - type: file
       target: ../../examples/*components/*.yaml
-
-
 
     ## Uncomment these lines to add more example data
     # - type: url
