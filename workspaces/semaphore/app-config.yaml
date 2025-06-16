@@ -43,10 +43,9 @@ integrations:
       token: ${GITHUB_TOKEN}
   azure:
     - host: dev.azure.com
-      token: 1nuTxjRzZqXRubeb7NI0VFTWXoSlJiA84dhL2RdCuGoFxkhanpaAJQQJ99BFACAAAAAAAAAAAAASAZDO1o5G
-  openrouter:
-    - host: openrouter.ai
-      token: ${OPENROUTER_AI_TOKEN}
+      token: ${AZURE_DEVOPS_TOKEN}
+  gemini:
+    - token: ${GEMINI_TOKEN}
 
 proxy:
   ### Example for how to add a proxy endpoint for the frontend.
