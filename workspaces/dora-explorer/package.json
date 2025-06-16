@@ -61,5 +61,12 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "yarn@4.9.1",
+  "dependencies": {
+    "@date-io/date-fns": "^3.2.1",
+    "@mui/x-date-pickers": "^8.5.2",
+    "date-fns": "^4.1.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.1"
+  }
 }
