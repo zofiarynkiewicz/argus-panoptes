@@ -1,26 +1,33 @@
-import { LoggerService } from '@backstage/backend-plugin-api';
+import {
+  LoggerService,
+  resolvePackagePath,
+} from '@backstage/backend-plugin-api';
 import { Config } from '@backstage/config';
 import { createDbPool, DbConfig } from './db';
-import mysql from 'mysql2/promise'; // Needed to type the pool
-
+import mysql from 'mysql2/promise';
 import { MetricItem, DoraService, MetricType, Aggregation } from './types';
-
 import fs from 'fs';
-import path from 'path';
+
+const getSqlFilePath = (fileName: string): string => {
+  return resolvePackagePath(
+    '@internal/plugin-dora-dashboard-backend',
+    'src/services/DoraService/queries',
+    fileName,
+  );
+};
 
 export async function get_daily_cfr(
   pool: mysql.Pool,
   projects: string[],
   from: number,
-  to: number
+  to: number,
 ): Promise<MetricItem[]> {
-  const sqlFilePath = path.join(__dirname, 'queries/cfr_daily.sql');
+  const sqlFilePath = getSqlFilePath('cfr_daily.sql');
   let sqlQuery = fs.readFileSync(sqlFilePath, 'utf8');
 
   const placeholders = projects.map(() => '?').join(', ');
   sqlQuery = sqlQuery.replace('IN (?)', `IN (${placeholders})`);
 
-  // TODO: adauga projects dupa ce schimbi slq queryul
   const dateFrom = new Date(from * 1000).toISOString().split('T')[0];
   const dateTo = new Date(to * 1000).toISOString().split('T')[0];
   const params = [dateFrom, dateTo, ...projects, dateFrom, dateTo];
@@ -38,15 +45,14 @@ export async function get_monthly_cfr(
   pool: mysql.Pool,
   projects: string[],
   from: number,
-  to: number
+  to: number,
 ): Promise<MetricItem[]> {
-  const sqlFilePath = path.join(__dirname, 'queries/cfr_monthly.sql');
+  const sqlFilePath = getSqlFilePath('cfr_monthly.sql');
   let sqlQuery = fs.readFileSync(sqlFilePath, 'utf8');
 
   const placeholders = projects.map(() => '?').join(', ');
   sqlQuery = sqlQuery.replace('IN (?)', `IN (${placeholders})`);
 
-  // TODO: adauga projects dupa ce schimbi slq queryul
   const dateFrom = new Date(from * 1000).toISOString().split('T')[0];
   const dateTo = new Date(to * 1000).toISOString().split('T')[0];
   const params = [...projects, dateFrom, dateTo, dateFrom, dateTo];
@@ -64,16 +70,14 @@ export async function get_daily_df(
   pool: mysql.Pool,
   projects: string[],
   from: number,
-  to: number
+  to: number,
 ): Promise<MetricItem[]> {
-  const sqlFilePath = path.join(__dirname, 'queries/df_daily.sql');
+  const sqlFilePath = getSqlFilePath('df_daily.sql');
   let sqlQuery = fs.readFileSync(sqlFilePath, 'utf8');
 
-  // Dynamically inject (?, ?, ?) based on number of projects
   const placeholders = projects.map(() => '?').join(', ');
   sqlQuery = sqlQuery.replace('IN (?)', `IN (${placeholders})`);
 
-  // Convert from and to timestamps to ISO date strings
   const dateFrom = new Date(from * 1000).toISOString().split('T')[0];
   const dateTo = new Date(to * 1000).toISOString().split('T')[0];
   const params = [dateFrom, dateTo, ...projects, dateFrom, dateTo];
@@ -87,21 +91,18 @@ export async function get_daily_df(
   }
 }
 
-
 export async function get_monthly_df(
   pool: mysql.Pool,
   projects: string[],
   from: number,
-  to: number
+  to: number,
 ): Promise<MetricItem[]> {
-  const sqlFilePath = path.join(__dirname, 'queries/df_monthly.sql');
+  const sqlFilePath = getSqlFilePath('df_monthly.sql');
   let sqlQuery = fs.readFileSync(sqlFilePath, 'utf8');
 
-  // Dynamically inject (?, ?, ?) based on number of projects
   const placeholders = projects.map(() => '?').join(', ');
   sqlQuery = sqlQuery.replace('IN (?)', `IN (${placeholders})`);
 
-  // Convert from and to timestamps to ISO date strings
   const dateFrom = new Date(from * 1000).toISOString().split('T')[0];
   const dateTo = new Date(to * 1000).toISOString().split('T')[0];
   const params = [...projects, dateFrom, dateTo, dateFrom, dateTo];
@@ -119,12 +120,11 @@ export async function get_daily_mltc(
   pool: mysql.Pool,
   projects: string[],
   from: number,
-  to: number
+  to: number,
 ): Promise<MetricItem[]> {
-  const sqlFilePath = path.join(__dirname, 'queries/mltc_daily.sql');
+  const sqlFilePath = getSqlFilePath('mltc_daily.sql');
   let sqlQuery = fs.readFileSync(sqlFilePath, 'utf8');
 
-  // Dynamically inject (?, ?, ...) based on the number of projects
   const placeholders = projects.map(() => '?').join(', ');
   sqlQuery = sqlQuery.replace('IN (?)', `IN (${placeholders})`);
 
@@ -141,17 +141,15 @@ export async function get_daily_mltc(
   }
 }
 
-
 export async function get_monthly_mltc(
   pool: mysql.Pool,
   projects: string[],
   from: number,
-  to: number
+  to: number,
 ): Promise<MetricItem[]> {
-  const sqlFilePath = path.join(__dirname, 'queries/mltc_monthly.sql');
+  const sqlFilePath = getSqlFilePath('mltc_monthly.sql');
   let sqlQuery = fs.readFileSync(sqlFilePath, 'utf8');
 
-  // Dynamically inject (?, ?, ...) based on the number of projects
   const placeholders = projects.map(() => '?').join(', ');
   sqlQuery = sqlQuery.replace('IN (?)', `IN (${placeholders})`);
 
@@ -172,16 +170,14 @@ export async function get_daily_mttr(
   pool: mysql.Pool,
   projects: string[],
   from: number,
-  to: number
+  to: number,
 ): Promise<MetricItem[]> {
-  const sqlFilePath = path.join(__dirname, 'queries/mttr_daily.sql');
+  const sqlFilePath = getSqlFilePath('mttr_daily.sql');
   let sqlQuery = fs.readFileSync(sqlFilePath, 'utf8');
-  
-  // Dynamically inject (?, ?, ...) based on the number of projects
+
   const placeholders = projects.map(() => '?').join(', ');
   sqlQuery = sqlQuery.replace('IN (?)', `IN (${placeholders})`);
 
-  // TODO: adauga projects dupa ce schimbi slq queryul
   const dateFrom = new Date(from * 1000).toISOString().split('T')[0];
   const dateTo = new Date(to * 1000).toISOString().split('T')[0];
   const params = [dateFrom, dateTo, ...projects, dateFrom, dateTo];
@@ -199,16 +195,14 @@ export async function get_monthly_mttr(
   pool: mysql.Pool,
   projects: string[],
   from: number,
-  to: number
+  to: number,
 ): Promise<MetricItem[]> {
-  const sqlFilePath = path.join(__dirname, 'queries/mttr_monthly.sql');
+  const sqlFilePath = getSqlFilePath('mttr_monthly.sql');
   let sqlQuery = fs.readFileSync(sqlFilePath, 'utf8');
-  
-  // Dynamically inject (?, ?, ...) based on the number of projects
+
   const placeholders = projects.map(() => '?').join(', ');
   sqlQuery = sqlQuery.replace('IN (?)', `IN (${placeholders})`);
 
-  // TODO: adauga projects dupa ce schimbi slq queryul
   const dateFrom = new Date(from * 1000).toISOString().split('T')[0];
   const dateTo = new Date(to * 1000).toISOString().split('T')[0];
   const params = [...projects, dateFrom, dateTo, dateFrom, dateTo];
@@ -221,7 +215,6 @@ export async function get_monthly_mttr(
     throw error;
   }
 }
-
 
 export async function createDoraService({
   logger,
@@ -239,62 +232,64 @@ export async function createDoraService({
     database: config.getString('dora.db.database'),
   };
 
-  const pool = createDbPool(dbConfig)
-
+  const pool = createDbPool(dbConfig);
 
   return {
-    
     async getMetric(
       type: MetricType,
       aggregation: Aggregation,
       projects: string[],
       from: number,
-      to: number
+      to: number,
     ) {
-        switch (type) {
-            case 'df':
-              if (aggregation === 'daily') {
-                return get_daily_df(pool, projects, from, to)
-              } else if (aggregation === 'monthly') {
-                return get_monthly_df(pool, projects, from, to)
-              }
-              break;
-            case 'mltc':
-              if (aggregation === 'daily') {
-                return get_daily_mltc(pool, projects, from, to)
-              } else if (aggregation === 'monthly') {
-                return get_monthly_mltc(pool, projects, from, to)
-              }
-              break;
-            case 'cfr':
-              if (aggregation === 'daily') {
-                return get_daily_cfr(pool, projects, from, to)
-              } else if (aggregation === 'monthly') {
-                return get_monthly_cfr(pool, projects, from, to)
-              }
-              break;
-            case 'mttr':
-              if (aggregation === 'daily') {
-                return get_daily_mttr(pool, projects, from, to)
-              } else if (aggregation === 'monthly') {
-                return get_monthly_mttr(pool, projects, from, to)
-              }
-              break;
+      switch (type) {
+        case 'df':
+          if (aggregation === 'daily') {
+            return get_daily_df(pool, projects, from, to);
+          } else if (aggregation === 'monthly') {
+            return get_monthly_df(pool, projects, from, to);
           }
-        
-          throw new Error(`Unsupported aggregation: ${aggregation}`);
-        },
+          break;
+        case 'mltc':
+          if (aggregation === 'daily') {
+            return get_daily_mltc(pool, projects, from, to);
+          } else if (aggregation === 'monthly') {
+            return get_monthly_mltc(pool, projects, from, to);
+          }
+          break;
+        case 'cfr':
+          if (aggregation === 'daily') {
+            return get_daily_cfr(pool, projects, from, to);
+          } else if (aggregation === 'monthly') {
+            return get_monthly_cfr(pool, projects, from, to);
+          }
+          break;
+        case 'mttr':
+          if (aggregation === 'daily') {
+            return get_daily_mttr(pool, projects, from, to);
+          } else if (aggregation === 'monthly') {
+            return get_monthly_mttr(pool, projects, from, to);
+          }
+          break;
+        default:
+          throw new Error(`Unsupported DORA metric type: ${type}`);
+      }
+
+      throw new Error(`Unsupported aggregation: ${aggregation}`);
+    },
 
     async getProjectNames(): Promise<string[]> {
-      const sqlQuery = "SELECT DISTINCT name FROM projects";
+      const sqlQuery = 'SELECT DISTINCT name FROM projects';
       try {
         const [rows] = await pool.execute(sqlQuery);
         return (rows as Array<{ name: string }>).map(row => row.name);
       } catch (error) {
-        logger.error("Error fetching project names", error instanceof Error ? error : new Error(String(error)));
+        logger.error(
+          'Error fetching project names',
+          error instanceof Error ? error : new Error(String(error)),
+        );
         throw error;
       }
     },
-
   };
 }
