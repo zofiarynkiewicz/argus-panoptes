@@ -8018,73 +8018,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@internal/plugin-ai-plugin-backend-module-tech-insights-backend-module@workspace:^, @internal/plugin-ai-plugin-backend-module-tech-insights-backend-module@workspace:plugins/ai-plugin-backend-module-tech-insights-backend-module":
-  version: 0.0.0-use.local
-  resolution: "@internal/plugin-ai-plugin-backend-module-tech-insights-backend-module@workspace:plugins/ai-plugin-backend-module-tech-insights-backend-module"
-  dependencies:
-    "@backstage-community/plugin-tech-insights-node": "npm:^2.3.0"
-    "@backstage/backend-plugin-api": "npm:^1.3.0"
-    "@backstage/backend-test-utils": "npm:^1.3.0"
-    "@backstage/catalog-client": "npm:^1.9.1"
-    "@backstage/catalog-model": "npm:^1.7.3"
-    "@backstage/cli": "npm:^0.32.0"
-    "@backstage/config": "npm:^1.3.2"
-  languageName: unknown
-  linkType: soft
-
-"@internal/plugin-ai-plugin-backend@workspace:^, @internal/plugin-ai-plugin-backend@workspace:plugins/ai-plugin-backend":
-  version: 0.0.0-use.local
-  resolution: "@internal/plugin-ai-plugin-backend@workspace:plugins/ai-plugin-backend"
-  dependencies:
-    "@backstage/backend-common": "npm:^0.25.0"
-    "@backstage/backend-defaults": "npm:^0.9.0"
-    "@backstage/backend-plugin-api": "npm:^1.3.0"
-    "@backstage/backend-test-utils": "npm:^1.3.0"
-    "@backstage/catalog-client": "npm:^1.9.1"
-    "@backstage/cli": "npm:^0.32.0"
-    "@backstage/errors": "npm:^1.2.7"
-    "@backstage/plugin-catalog-node": "npm:^1.16.3"
-    "@types/express": "npm:^4.17.6"
-    "@types/supertest": "npm:^2.0.12"
-    express: "npm:^4.17.1"
-    express-promise-router: "npm:^4.1.0"
-    knex: "npm:^3.1.0"
-    supertest: "npm:^6.2.4"
-    zod: "npm:^3.22.4"
-  languageName: unknown
-  linkType: soft
-
-"@internal/plugin-ai-plugin@workspace:^, @internal/plugin-ai-plugin@workspace:plugins/ai-plugin":
-  version: 0.0.0-use.local
-  resolution: "@internal/plugin-ai-plugin@workspace:plugins/ai-plugin"
-  dependencies:
-    "@backstage/catalog-model": "npm:^1.7.4"
-    "@backstage/cli": "npm:^0.32.0"
-    "@backstage/core-app-api": "npm:^1.16.1"
-    "@backstage/core-components": "npm:^0.17.1"
-    "@backstage/core-plugin-api": "npm:^1.10.6"
-    "@backstage/dev-utils": "npm:^1.1.9"
-    "@backstage/plugin-catalog-react": "npm:^1.18.0"
-    "@backstage/plugin-tech-insights": "npm:^0.3.27"
-    "@backstage/test-utils": "npm:^1.7.7"
-    "@backstage/theme": "npm:^0.6.5"
-    "@emotion/react": "npm:^11.14.0"
-    "@google/genai": "npm:^1.1.0"
-    "@material-ui/core": "npm:^4.9.13"
-    "@material-ui/icons": "npm:^4.9.1"
-    "@material-ui/lab": "npm:^4.0.0-alpha.61"
-    "@mui/icons-material": "npm:^7.1.0"
-    "@mui/material": "npm:^7.1.0"
-    "@testing-library/jest-dom": "npm:^6.0.0"
-    "@testing-library/react": "npm:^14.0.0"
-    "@testing-library/user-event": "npm:^14.0.0"
-    msw: "npm:^1.0.0"
-    react-use: "npm:^17.2.4"
-  peerDependencies:
-    react: ^16.13.1 || ^17.0.0 || ^18.0.0
-  languageName: unknown
-  linkType: soft
-
 "@internationalized/date@npm:^3.8.0":
   version: 3.8.0
   resolution: "@internationalized/date@npm:3.8.0"
@@ -10629,6 +10562,73 @@ __metadata:
   checksum: 10c0/af5826df93de437121308f4f4ce0b2eeb89b60bb57a1a6592fb89c0d40d311ad1d9f3f6a4db2cce6f2bcf572de1aa3f85704254e89b18ce61c41ebb06564c4ee
   languageName: node
   linkType: hard
+
+"@philips-labs/plugin-ai-plugin-backend-module-tech-insights-backend-module@workspace:^, @philips-labs/plugin-ai-plugin-backend-module-tech-insights-backend-module@workspace:plugins/ai-plugin-backend-module-tech-insights-backend-module":
+  version: 0.0.0-use.local
+  resolution: "@philips-labs/plugin-ai-plugin-backend-module-tech-insights-backend-module@workspace:plugins/ai-plugin-backend-module-tech-insights-backend-module"
+  dependencies:
+    "@backstage-community/plugin-tech-insights-node": "npm:^2.3.0"
+    "@backstage/backend-plugin-api": "npm:^1.3.0"
+    "@backstage/backend-test-utils": "npm:^1.3.0"
+    "@backstage/catalog-client": "npm:^1.9.1"
+    "@backstage/catalog-model": "npm:^1.7.3"
+    "@backstage/cli": "npm:^0.32.0"
+    "@backstage/config": "npm:^1.3.2"
+  languageName: unknown
+  linkType: soft
+
+"@philips-labs/plugin-ai-plugin-backend@workspace:^, @philips-labs/plugin-ai-plugin-backend@workspace:plugins/ai-plugin-backend":
+  version: 0.0.0-use.local
+  resolution: "@philips-labs/plugin-ai-plugin-backend@workspace:plugins/ai-plugin-backend"
+  dependencies:
+    "@backstage/backend-common": "npm:^0.25.0"
+    "@backstage/backend-defaults": "npm:^0.9.0"
+    "@backstage/backend-plugin-api": "npm:^1.3.0"
+    "@backstage/backend-test-utils": "npm:^1.3.0"
+    "@backstage/catalog-client": "npm:^1.9.1"
+    "@backstage/cli": "npm:^0.32.0"
+    "@backstage/errors": "npm:^1.2.7"
+    "@backstage/plugin-catalog-node": "npm:^1.16.3"
+    "@types/express": "npm:^4.17.6"
+    "@types/supertest": "npm:^2.0.12"
+    express: "npm:^4.17.1"
+    express-promise-router: "npm:^4.1.0"
+    knex: "npm:^3.1.0"
+    supertest: "npm:^6.2.4"
+    zod: "npm:^3.22.4"
+  languageName: unknown
+  linkType: soft
+
+"@philips-labs/plugin-ai-plugin@workspace:^, @philips-labs/plugin-ai-plugin@workspace:plugins/ai-plugin":
+  version: 0.0.0-use.local
+  resolution: "@philips-labs/plugin-ai-plugin@workspace:plugins/ai-plugin"
+  dependencies:
+    "@backstage/catalog-model": "npm:^1.7.4"
+    "@backstage/cli": "npm:^0.32.0"
+    "@backstage/core-app-api": "npm:^1.16.1"
+    "@backstage/core-components": "npm:^0.17.1"
+    "@backstage/core-plugin-api": "npm:^1.10.6"
+    "@backstage/dev-utils": "npm:^1.1.9"
+    "@backstage/plugin-catalog-react": "npm:^1.18.0"
+    "@backstage/plugin-tech-insights": "npm:^0.3.27"
+    "@backstage/test-utils": "npm:^1.7.7"
+    "@backstage/theme": "npm:^0.6.5"
+    "@emotion/react": "npm:^11.14.0"
+    "@google/genai": "npm:^1.1.0"
+    "@material-ui/core": "npm:^4.9.13"
+    "@material-ui/icons": "npm:^4.9.1"
+    "@material-ui/lab": "npm:^4.0.0-alpha.61"
+    "@mui/icons-material": "npm:^7.1.0"
+    "@mui/material": "npm:^7.1.0"
+    "@testing-library/jest-dom": "npm:^6.0.0"
+    "@testing-library/react": "npm:^14.0.0"
+    "@testing-library/user-event": "npm:^14.0.0"
+    msw: "npm:^1.0.0"
+    react-use: "npm:^17.2.4"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+  languageName: unknown
+  linkType: soft
 
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
@@ -15943,10 +15943,10 @@ __metadata:
     "@backstage/plugin-user-settings": "npm:^0.8.21"
     "@backstage/test-utils": "npm:^1.7.7"
     "@backstage/theme": "npm:^0.6.5"
-    "@internal/plugin-ai-plugin": "workspace:^"
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
     "@mui/icons-material": "npm:^7.1.0"
+    "@philips-labs/plugin-ai-plugin": "workspace:^"
     "@playwright/test": "npm:^1.32.3"
     "@testing-library/dom": "npm:^9.0.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
@@ -16663,8 +16663,8 @@ __metadata:
     "@backstage/plugin-search-backend-module-pg": "npm:^0.5.43"
     "@backstage/plugin-search-backend-module-techdocs": "npm:^0.4.1"
     "@backstage/plugin-techdocs-backend": "npm:^2.0.2"
-    "@internal/plugin-ai-plugin-backend": "workspace:^"
-    "@internal/plugin-ai-plugin-backend-module-tech-insights-backend-module": "workspace:^"
+    "@philips-labs/plugin-ai-plugin-backend": "workspace:^"
+    "@philips-labs/plugin-ai-plugin-backend-module-tech-insights-backend-module": "workspace:^"
     app: "link:../app"
     better-sqlite3: "npm:^9.0.0"
     node-gyp: "npm:^10.0.0"
@@ -17025,12 +17025,12 @@ __metadata:
   linkType: hard
 
 "brace-expansion@npm:^1.1.7":
-  version: 1.1.11
-  resolution: "brace-expansion@npm:1.1.11"
+  version: 1.1.12
+  resolution: "brace-expansion@npm:1.1.12"
   dependencies:
     balanced-match: "npm:^1.0.0"
     concat-map: "npm:0.0.1"
-  checksum: 10c0/695a56cd058096a7cb71fb09d9d6a7070113c7be516699ed361317aca2ec169f618e28b8af352e02ab4233fb54eb0168460a40dc320bab0034b36ab59aaad668
+  checksum: 10c0/975fecac2bb7758c062c20d0b3b6288c7cc895219ee25f0a64a9de662dbac981ff0b6e89909c3897c1f84fa353113a721923afdec5f8b2350255b097f12b1f73
   languageName: node
   linkType: hard
 
@@ -33415,14 +33415,14 @@ __metadata:
   linkType: hard
 
 "tar-fs@npm:^2.0.0, tar-fs@npm:~2.1.2":
-  version: 2.1.2
-  resolution: "tar-fs@npm:2.1.2"
+  version: 2.1.3
+  resolution: "tar-fs@npm:2.1.3"
   dependencies:
     chownr: "npm:^1.1.1"
     mkdirp-classic: "npm:^0.5.2"
     pump: "npm:^3.0.0"
     tar-stream: "npm:^2.1.4"
-  checksum: 10c0/9c704bd4a53be7565caf34ed001d1428532457fe3546d8fc1233f0f0882c3d2403f8602e8046e0b0adeb31fe95336572a69fb28851a391523126b697537670fc
+  checksum: 10c0/472ee0c3c862605165163113ab6924f411c07506a1fb24c51a1a80085f0d4d381d86d2fd6b189236c8d932d1cd97b69cce35016767ceb658a35f7584fe77f305
   languageName: node
   linkType: hard
 
