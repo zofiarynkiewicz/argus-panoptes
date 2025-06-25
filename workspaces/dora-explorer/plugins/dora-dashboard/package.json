@@ -10,8 +10,18 @@
     "main": "dist/index.esm.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philips-labs/argus-panoptes",
+    "directory": "workspaces/dora-explorer/plugins/dora-dashboard"
+  },
   "backstage": {
-    "role": "frontend-plugin"
+    "role": "frontend-plugin",
+    "pluginId": "dora-dashboard",
+    "pluginPackages": [
+      "@internal/plugin-dora-dashboard",
+      "@internal/plugin-dora-dashboard-backend"
+    ]
   },
   "sideEffects": false,
   "scripts": {
