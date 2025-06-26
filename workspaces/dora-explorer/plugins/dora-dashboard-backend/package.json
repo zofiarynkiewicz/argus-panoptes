@@ -1,5 +1,5 @@
 {
-  "name": "@internal/plugin-dora-dashboard-backend",
+  "name": "@philips-labs/plugin-dora-dashboard-backend",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
@@ -19,8 +19,8 @@
     "role": "backend-plugin",
     "pluginId": "dora-dashboard",
     "pluginPackages": [
-      "@internal/plugin-dora-dashboard",
-      "@internal/plugin-dora-dashboard-backend"
+      "@philips-labs/plugin-dora-dashboard",
+      "@philips-labs/plugin-dora-dashboard-backend"
     ]
   },
   "scripts": {

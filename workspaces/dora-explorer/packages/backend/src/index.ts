@@ -53,6 +53,6 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 backend.add(import('@backstage/plugin-kubernetes-backend'));
 
 // dora-explorer plugin
-backend.add(import('@internal/plugin-dora-dashboard-backend'));
+backend.add(import('@philips-labs/plugin-dora-dashboard-backend'));
 
 backend.start();

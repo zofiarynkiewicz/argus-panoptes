@@ -10,7 +10,7 @@ import fs from 'fs';
 
 const getSqlFilePath = (fileName: string): string => {
   return resolvePackagePath(
-    '@internal/plugin-dora-dashboard-backend',
+    '@philips-labs/plugin-dora-dashboard-backend',
     'src/services/DoraService/queries',
     fileName,
   );
