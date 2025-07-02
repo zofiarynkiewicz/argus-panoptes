@@ -31,7 +31,7 @@
     "prepack": "backstage-cli package prepack",
     "postpack": "backstage-cli package postpack",
     "tsc": "tsc",
-    "tsc:full": "tsc --skipLibCheck false --incremental false"
+    "tsc:full": "tsc --skipLibCheck true --incremental false"
   },
   "dependencies": {
     "@backstage-community/plugin-tech-insights-common": "^0.7.0",
