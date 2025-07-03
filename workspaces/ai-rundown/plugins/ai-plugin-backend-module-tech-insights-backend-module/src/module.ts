@@ -4,7 +4,6 @@
  * Allows the plugin to collect commits for usage
  */
 
-
 import {
   createBackendModule,
   coreServices,
