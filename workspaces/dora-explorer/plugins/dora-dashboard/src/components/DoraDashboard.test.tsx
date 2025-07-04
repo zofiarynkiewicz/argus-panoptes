@@ -6,7 +6,6 @@ import {
   useProjects,
 } from './FetchMetricsComponent/FetchMetricsComponent';
 
-
 jest.mock('./FetchMetricsComponent/FetchMetricsComponent', () => ({
   useMetricsData: jest.fn(),
   useProjects: jest.fn(),
@@ -109,7 +108,6 @@ beforeEach(() => {
     error: undefined,
   });
 });
-
 
 describe('DoraDashboard', () => {
   it('renders dashboard title', () => {

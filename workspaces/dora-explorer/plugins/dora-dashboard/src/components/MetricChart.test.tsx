@@ -11,13 +11,13 @@ function formatValue(metricType: string, value: any): string {
   const numValue = typeof value === 'string' ? parseFloat(value) : value;
 
   switch (metricType) {
-    case 'df': 
+    case 'df':
       return String(numValue);
-    case 'mltc': 
+    case 'mltc':
       return numValue.toFixed(1);
-    case 'mttr': 
+    case 'mttr':
       return numValue.toFixed(1);
-    case 'cfr': 
+    case 'cfr':
       return `${(numValue * 100).toFixed(1)}%`;
     default:
       return String(numValue);
